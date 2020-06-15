@@ -39,13 +39,8 @@ class LoginController extends Controller
     }
     public function showLoginForm()
     {
-        if(Auth::check()) {
-           return redirect()->back();
-        } else {
-           return view('Admin.auth.login');
-        }
-
-    }
+        return view('Admin.auth.login');
+     }
      /**
      * Get the guard to be used during authentication.
      *

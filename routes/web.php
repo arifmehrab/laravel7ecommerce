@@ -24,20 +24,17 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //** Admin Route Here **//
 
-Route::get('admin/dashboard','AdminController@index')->name('admin.dashboard');
+Route::get('admin/dashboard','AdminController@index');
    // Admin Authentication Route...
  Route::get('admin', 'Admin\Auth\LoginController@showLoginForm')->name('admin.login');
  Route::post('admin', 'Admin\Auth\LoginController@login');
  Route::get('admin/logout','AdminController@logout')->name('admin.logout');
-
 //** Admin Route Group **//
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => 'auth:admin'], function () {
     // Admin Profile Update Route..
-Route::get('/profile', 'Auth\ProfileUpdate@index')->name('profile');
-Route::post('/profile/update', 'Auth\ProfileUpdate@profileUpdate')->name('profile.update');
+Route::get('/profile', 'Auth\ProfileController@index')->name('profile');
+Route::put('/profile/update', 'Auth\ProfileController@profileUpdate')->name('profile.update');
   // Admin Password Change Route..
-Route::get('/password/update', 'Auth\PasswordUpdate@passwordUpdate')->name('password.update');
+Route::post('/password/update', 'Auth\ProfileController@passwordUpdate')->name('password.update');
 });
-
-

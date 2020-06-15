@@ -1,4 +1,4 @@
-@extends('layouts.Admin.master')
+@extends('Admin.master')
 @section('content')
  <!-- Row -->
                 <div class="row">
@@ -15,8 +15,8 @@
                                 <hr> </div>
                             <div class="card-body"> <small class="text-muted">Email address </small>
                                 <h6>{{ Auth::user()->email }}</h6>
-                                <small class="text-muted p-t-30 db">Address</small>
-                                <h6>{{ Auth::user()->address }}</h6>
+                                <small class="text-muted p-t-30 db">Mobile</small>
+                                <h6>{{ Auth::user()->phone }}</h6>
                                 <small class="text-muted p-t-30 db">Social Profile</small>
                                 <br/>
                                 <button class="btn btn-circle btn-secondary"><i class="fab fa-facebook-f"></i></button>
@@ -53,17 +53,14 @@
                                                     {{ Auth::user()->email }}
                                                 </p>
                                             </div>
-                                            <div class="col-md-3 col-xs-6"> <strong>Location</strong>
+                                            <div class="col-md-3 col-xs-6"> <strong>Mobile</strong>
                                                 <br>
                                                 <p class="text-muted">
-                                                    {{ Auth::user()->address }}
+                                                    {{ Auth::user()->phone }}
                                                 </p>
                                             </div>
                                         </div>
                                         <hr>
-                                        <p class="m-t-30">
-                                            {{ Auth::user()->about }}
-                                        </p>
                                         <h4 class="font-medium m-t-30">Skill Set</h4>
                                         <hr>
                                         <h5 class="m-t-30">Laravel<span class="pull-right">80%</span></h5>
@@ -79,7 +76,7 @@
                                             @csrf
                                             @method('PUT')
                                             <div class="form-group">
-                                                <label class="col-md-12">Name</label>
+                                                <label class="col-md-12">Full Name</label>
                                                 <div class="col-md-12">
                                                     <input type="text" placeholder="Enter Your Name" class="form-control form-control-line" name="name" value="{{ $admin->name }}">
                                                     <!-- Error Message -->
@@ -100,13 +97,9 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="example-email" class="col-md-12">Mobile</label>
+                                                <label class="col-md-12">Mobile</label>
                                                 <div class="col-md-12">
-                                                    <input type="number" placeholder="Enter Your Mobile" class="form-control form-control-line" name="phone" id="example-email" value="{{ $user->phone }}">
-                                                    <!-- Error Message -->
-                                                    @error('phone')
-                                                    <strong class="text-danger">{{ $message }}</strong>
-                                                    @enderror
+                                                    <input type="number" placeholder="Enter Your Mobile Number" class="form-control form-control-line" name="phone" value="{{ $admin->phone }}">
                                                 </div>
                                             </div>
 

@@ -8,42 +8,22 @@
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="javascript:void()">My Profile </a></li>
                                 <li>
-                                    <a href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        <i class="fa fa-power-off"></i>
+                                    <a href="{{ route('admin.logout') }}">
                                         {{ __('Logout') }}
                                     </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
                                 </li>
                             </ul>
                         </li>
                         <li class="nav-devider"></li>
-                        <li> <a class="waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-gauge"></i><span>Dashboard</span></a>
+                        <li> <a class="waves-effect waves-dark" href="{{ url('admin/dashboard') }}" aria-expanded="false"><i class="mdi mdi-gauge"></i><span>Dashboard</span></a>
                         </li>
 
-                       <li class="nav-small-cap">Header With Elements</li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Forms</span></a>
+                       <li class="nav-small-cap">Ecommerce All Widget</li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Categories</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="form-basic.html">Basic Forms</a></li>
-                            </ul>
-                        </li>
-                        
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-arrange-send-backward"></i><span class="hide-menu">Multi level dd</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="#">item 1.1</a></li>
-                                <li><a href="#">item 1.2</a></li>
-                                <li> <a class="has-arrow" href="#" aria-expanded="false">Menu 1.3</a>
-                                    <ul aria-expanded="false" class="collapse">
-                                        <li><a href="#">item 1.3.1</a></li>
-                                        <li><a href="#">item 1.3.2</a></li>
-                                        <li><a href="#">item 1.3.3</a></li>
-                                        <li><a href="#">item 1.3.4</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">item 1.4</a></li>
+                                <li><a href="form-basic.html">Category</a></li>
+                                <li><a href="form-basic.html">Sub category</a></li>
+                                <li><a href="form-basic.html">Brand</a></li>
                             </ul>
                         </li>
                     </ul>

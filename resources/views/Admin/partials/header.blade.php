@@ -125,7 +125,7 @@
                                     <li role="separator" class="divider"></li>
                                     <li>
                                         <a class="dropdown-item" href="{{ route('admin.logout') }}">
-                                            Logout
+                                        {{ __('Logout') }}
                                     </a>
                                     </li>
                                 </ul>
