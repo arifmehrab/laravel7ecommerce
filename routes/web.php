@@ -35,6 +35,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Admin Profile Update Route..
 Route::get('/profile', 'Auth\ProfileController@index')->name('profile');
 Route::put('/profile/update', 'Auth\ProfileController@profileUpdate')->name('profile.update');
-  // Admin Password Change Route..
+   // Admin Password Change Route..
 Route::post('/password/update', 'Auth\ProfileController@passwordUpdate')->name('password.update');
+   // Catgegory Route..
+Route::resource('category', 'category\categoryController');
+   // subCatgegory Route..
+Route::resource('subcategory', 'category\subCategoryController');
+  // Brand Route..
+Route::resource('brand', 'category\brandController');
 });

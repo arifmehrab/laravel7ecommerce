@@ -21,8 +21,10 @@
     <link href="{{ asset('Backend/assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css') }}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{ asset('Backend/assets/css/style.css') }}" rel="stylesheet">
-    <!--alerts CSS -->
+    <!-- alerts CSS -->
     <link href="{{ asset('Backend/assets/plugins/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
+    <!-- alerts CSS -->
+    <link href="{{ asset('Backend/assets/toster-js/css/toastr.css') }}" rel="stylesheet">
     <!-- Dashboard 1 Page CSS -->
     <link href="{{ asset('Backend/assets/css/pages/dashboard4.css') }}" rel="stylesheet">
     <!-- DataTable -->
@@ -109,6 +111,8 @@
     <script src="{{ asset('Backend/assets/plugins/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('Backend/assets/plugins/datatables.net-bs4/js/dataTables.responsive.min.js') }}"></script>
     <!--- Notify js Start --->
+   <script src="{{ asset('Backend/assets/toster-js/js/toastr.js') }}"></script>
+   <!--- Notify js Start --->
    <script src="{{ asset('Backend/assets/notify-js/notify.js') }}"></script>
     <!-- Sweet-Alert  -->
     <script src="{{ asset('Backend/assets/plugins/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
@@ -132,6 +136,25 @@
     </script>
   @endif
 <!--- Notify js End --->
+<script>
+    @if(Session::has('messege'))
+      var type="{{Session::get('alert-type','info')}}"
+      switch(type){
+          case 'info':
+               toastr.info("{{ Session::get('messege') }}");
+               break;
+          case 'success':
+              toastr.success("{{ Session::get('messege') }}");
+              break;
+          case 'warning':
+             toastr.warning("{{ Session::get('messege') }}");
+              break;
+          case 'error':
+              toastr.error("{{ Session::get('messege') }}");
+              break;
+      }
+    @endif
+ </script>
 
 <!--- Sweet-Alert --->
 <script type="text/javascript">
@@ -146,7 +169,7 @@
 
             swalWithBootstrapButtons.fire({
                 title: 'Are you sure?',
-                text: "You Want to Delete This Item!",
+                text: "You Want to Delete This!",
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Yes, delete it!',
@@ -162,7 +185,7 @@
                 ) {
                     swalWithBootstrapButtons.fire(
                         'Cancelled',
-                        'Your file is safe :)',
+                        'Your Data is Save :)',
                         'error'
                     )
                 }

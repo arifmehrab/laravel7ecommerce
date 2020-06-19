@@ -4,7 +4,7 @@
                 <!-- Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="{{ url('/admin/dashboard') }}">
                         <!-- Logo icon --><b>
                             <!-- Dark Logo icon -->
                             <img src="{{ asset('Backend') }}/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
@@ -12,7 +12,7 @@
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text --><span>
-                          {{ Auth::user()->name }}
+                         <span style="color: white;">{{ Auth::user()->name }}</span>
                          <!-- dark Logo text -->
                         {{--  <img src="../assets/images/logo-text.png" alt="homepage" class="dark-logo" /> --}}
                          </span></a>
@@ -100,15 +100,13 @@
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                               <strong>
-                                   {{ Auth::user()->name }}
-                               </strong>
+                                <img src="{{ asset('Backend/assets/images/profile/'. Auth::user()->profile) }}" alt="user" class="profile-pic">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right animated flipInY">
                                 <ul class="dropdown-user">
                                     <li>
                                         <div class="dw-user-box">
-                                            <div class="u-img"><img src="../assets/images/users/1.jpg" alt="user"></div>
+                                            <div class="u-img"><img src="{{ asset('Backend/assets/images/profile/'. Auth::user()->profile) }}" alt="user"></div>
                                             <div class="u-text">
                                                 <h4>
                                                     {{ Auth::user()->name }}

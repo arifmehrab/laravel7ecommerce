@@ -4,9 +4,9 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li class="user-profile"> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><img src="../assets/images/users/profile.png" alt="user" /><span class="hide-menu">{{ Auth::user()->name }}</span></a>
+                        <li class="user-profile"> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><img src="{{ asset('Backend/assets/images/profile/'.Auth::user()->profile) }}" alt="user" /><span class="hide-menu">{{ Auth::user()->name }}</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="javascript:void()">My Profile </a></li>
+                                <li><a href="{{ route('admin.profile') }}">My Profile </a></li>
                                 <li>
                                     <a href="{{ route('admin.logout') }}">
                                         {{ __('Logout') }}
@@ -21,9 +21,9 @@
                        <li class="nav-small-cap">Ecommerce All Widget</li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Categories</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="form-basic.html">Category</a></li>
-                                <li><a href="form-basic.html">Sub category</a></li>
-                                <li><a href="form-basic.html">Brand</a></li>
+                                <li><a href="{{ route('admin.category.index') }}">Category</a></li>
+                                <li><a href="{{ route('admin.subcategory.index') }}">Sub category</a></li>
+                                <li><a href="{{ route('admin.brand.index') }}">Brand</a></li>
                             </ul>
                         </li>
                     </ul>
