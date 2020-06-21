@@ -19,7 +19,9 @@
                         </li>
 
                        <li class="nav-small-cap">Ecommerce All Widget</li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Categories</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Categories
+                            <span class="label label-rouded label-primary pull-right">3</span>
+                            </span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="{{ route('admin.category.index') }}">Category</a></li>
                                 <li><a href="{{ route('admin.subcategory.index') }}">Sub category</a></li>

@@ -49,10 +49,9 @@ class categoryController extends Controller
         $category->category_slug = str::slug($request->category, '-');
         $category->save();
         $notification = array(
-            'messege'=> 'category add successfuly',
-            'alert-type'=>'success'
-           );
-
+            'message'    => 'category add successfuly',
+            'alert-type' => 'success',
+        );
         // Redirect
         return redirect()->route('admin.category.index')->with($notification);
     }
@@ -93,8 +92,12 @@ class categoryController extends Controller
         $categoryUpdate->category_name = $request->category;
         $categoryUpdate->category_slug = str::slug($request->category, '-');
         $categoryUpdate->save();
+        $notification = array(
+            'message'    => 'Category Updated Successfully',
+            'alert-type' => 'success',
+        );
         // Redirect
-        return redirect()->route('admin.category.index')->with('success', 'Category Updated Successfully');
+        return redirect()->route('admin.category.index')->with($notification);
     }
 
     /**
@@ -107,7 +110,11 @@ class categoryController extends Controller
     {
         $categoryDelete = category::find($id);
         $categoryDelete->delete();
+        $notification = array(
+            'message'    => 'Category Deleted Successfully',
+            'alert-type' => 'success',
+        );
         // redirect
-        return redirect()->route('admin.category.index')->with('success', 'Category Deleted successfully');
+        return redirect()->route('admin.category.index')->with($notification);
     }
 }

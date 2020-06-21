@@ -119,43 +119,37 @@
     <script src="{{ asset('Backend/assets/plugins/sweetalert2/sweet-alert.init.js') }}"></script>
     <!--- Extra js in others page --->
     @stack('js')
-<!---- Success Message -->
-  @if(session()->has('success'))
-    <script type="text/javascript">
-      $(function(){
-        $.notify("{{ session()->get('success') }}",{globalPosition:'top right',className:'success'});
-      });
-    </script>
-  @endif
-<!---- Error Message -->
-  @if(session()->has('error'))
-    <script type="text/javascript">
-      $(function(){
-        $.notify("{{ session()->get('error') }}",{globalPosition:'top right',className:'error'});
-      });
-    </script>
-  @endif
-<!--- Notify js End --->
+  <!--- Toastr Message --->
 <script>
-    @if(Session::has('messege'))
+    @if(Session::has('message'))
       var type="{{Session::get('alert-type','info')}}"
       switch(type){
           case 'info':
-               toastr.info("{{ Session::get('messege') }}");
+               toastr.info("{{ Session::get('message') }}");
                break;
           case 'success':
-              toastr.success("{{ Session::get('messege') }}");
+              toastr.success("{{ Session::get('message') }}");
               break;
           case 'warning':
-             toastr.warning("{{ Session::get('messege') }}");
+             toastr.warning("{{ Session::get('message') }}");
               break;
           case 'error':
-              toastr.error("{{ Session::get('messege') }}");
+              toastr.error("{{ Session::get('message') }}");
               break;
       }
     @endif
  </script>
-
+  <!--- Laravel validation Message By Toaster --->
+<script type="text/javascript">
+    @if($errors->any())
+        @foreach($errors->all() as $error)
+        toastr.error('{{ $error }}', 'Error', {
+            closeButton:true,
+            progressBar:true,
+        });
+        @endforeach
+    @endif
+</script>
 <!--- Sweet-Alert --->
 <script type="text/javascript">
     function deleteItem(id){
