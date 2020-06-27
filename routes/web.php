@@ -43,4 +43,10 @@ Route::resource('category', 'category\categoryController');
 Route::resource('subcategory', 'category\subCategoryController');
   // Brand Route..
 Route::resource('brand', 'category\brandController');
+ // coupns Route..
+Route::resource('coupon', 'coupon\couponController');
+ // Product Route..
+Route::resource('product', 'product\productController');
+  // Subcategory Get By Ajax
+Route::get('/product/subcategory/get', 'product\productController@subCategoryGet')->name('product.sub.get');
 });

@@ -14,6 +14,7 @@
                                 </li>
                             </ul>
                         </li>
+
                         <li class="nav-devider"></li>
                         <li> <a class="waves-effect waves-dark" href="{{ url('admin/dashboard') }}" aria-expanded="false"><i class="mdi mdi-gauge"></i><span>Dashboard</span></a>
                         </li>
@@ -28,6 +29,24 @@
                                 <li><a href="{{ route('admin.brand.index') }}">Brand</a></li>
                             </ul>
                         </li>
+
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Coupons
+                            <span class="label label-rouded label-primary pull-right">1</span>
+                            </span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="{{ route('admin.coupon.index') }}">Coupon</a></li>
+                            </ul>
+                        </li>
+
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Products
+                            <span class="label label-rouded label-primary pull-right">2</span>
+                            </span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="{{ route('admin.product.index') }}">All Products</a></li>
+                                <li><a href="{{ route('admin.product.create') }}">Add Product</a></li>
+                            </ul>
+                        </li>
+
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
