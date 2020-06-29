@@ -96,7 +96,7 @@ class brandController extends Controller
     {
         // validation
         $validation = $request->validate([
-            'brand_name' => 'required|unique:brands,brand_name',
+            'brand_name' => 'required',
         ]);
         // Brand update
         $bradUpdate = brand::find($id);

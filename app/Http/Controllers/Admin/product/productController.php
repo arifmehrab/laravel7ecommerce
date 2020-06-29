@@ -19,7 +19,7 @@ class productController extends Controller
      */
     public function index()
     {
-        $products = product::all();
+        $products = product::latest()->get();
         return view('Admin.product.product_index', compact('products'));
     }
 
@@ -118,7 +118,8 @@ class productController extends Controller
      */
     public function show($id)
     {
-        //
+        $productShow = product::find($id);
+        return view('Admin.product.product_show', compact('productShow'));
     }
 
     /**
@@ -129,7 +130,10 @@ class productController extends Controller
      */
     public function edit($id)
     {
-        dd('ok');
+        $productEdit = product::find($id);
+        $categories = category::all();
+        $brands = brand::all();
+        return view('Admin.product.product_edit', compact('productEdit', 'categories', 'brands'));
     }
 
     /**
@@ -141,7 +145,61 @@ class productController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         // Product Update...
+        //  $productEdit                   = product::find($id);
+        //  $productEdit->category_id      = $request->category;
+        //  $productEdit->subcategory_id   = $request->subcategory;
+        //  $productEdit->brand_id         = $request->brand;
+        //  $productEdit->product_name     = $request->product_name;
+        //  $productEdit->product_code     = $request->product_code;
+        //  $productEdit->product_quantity = $request->product_quantity;
+        //  $productEdit->product_details  = $request->product_details;
+        //  $productEdit->product_color    = $request->product_color;
+        //  $productEdit->product_size     = $request->product_size;
+        //  $productEdit->selling_price    = $request->selling_price;
+        //  $productEdit->discount_price   = $request->discount_price;
+        //  $productEdit->video_link       = $request->video_link;
+        //  $productEdit->main_slider      = $request->main_slider;
+        //  $productEdit->hot_deal         = $request->hot_deal;
+        //  $productEdit->best_rated       = $request->best_rated;
+        //  $productEdit->mid_slider       = $request->mid_slider;
+        //  $productEdit->hot_new          = $request->hot_new;
+        //  $productEdit->trendy           = $request->trendy;
+         // Image One Update
+         $image_one = $request->file('image1');
+         $image_two = $request->file('image2');
+         $image_three = $request->file('image3');
+          // Three image Update 
+        if($image_one && $image_two && $image_three) {
+            dd('image one and image tow and image three');
+        }
+         // Two image Update 
+        if($image_one && $image_two) {
+            dd('image one and two');
+        }
+         // Two image Update 
+         if($image_two && $image_three) {
+            dd('image two and thdree');
+        }
+         // Two image Update 
+         if($image_one && $image_three) {
+            dd('image one and image three');
+        }
+        // One image update
+         if(isset($image_one)) {
+             dd('image one');
+         }
+         // One image update 
+         if(isset($image_two)) {
+             dd('image two');
+         }
+         // One image update
+         if(isset($image_three)) {
+            dd('image three');
+        }
+        
+         
+
     }
 
     /**
@@ -152,6 +210,51 @@ class productController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $productDelete = product::find($id);
+        $img1 = $productDelete->image_one;
+        $img2 = $productDelete->image_two;
+        $img3 = $productDelete->image_three;
+        if($img1 && $img2 && $img3) {
+            @unlink(public_path('/Backend/assets/images/product/').$img1);
+            @unlink(public_path('/Backend/assets/images/product/').$img2);
+            @unlink(public_path('/Backend/assets/images/product/').$img3);
+            $productDelete->delete();
+        }
+         // Notification...
+         $notification = array(
+            'message'    => 'Product Deleted successfuly',
+            'alert-type' => 'success',
+        );
+        // Redirect
+        return redirect()->route('admin.product.index')->with($notification);
+    }
+    // Product Active
+    public function productActive($id)
+    {
+        $productInactive         = product::find($id);
+        $productInactive->status = 1;
+        $productInactive->save();
+        // Notification...
+        $notification = array(
+            'message'    => 'Product Active successfuly',
+            'alert-type' => 'success',
+        );
+        // Redirect
+        return redirect()->route('admin.product.index')->with($notification);
+    }
+    // Product Inactive
+    public function productInactive($id)
+    {
+        $productActive         = product::find($id);
+        $productActive->status = 0;
+        $productActive->save();
+        // Notification...
+        $notification = array(
+            'message'    => 'Product Inactive successfuly',
+            'alert-type' => 'success',
+        );
+        // Redirect
+        return redirect()->route('admin.product.index')->with($notification);
+
     }
 }
