@@ -46,6 +46,17 @@
                                 <li><a href="{{ route('admin.product.create') }}">Add Product</a></li>
                             </ul>
                         </li>
+                        <!----- Blog Widget Area ---->
+                        <li class="nav-small-cap">Blog Widget</li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Blogs
+                            <span class="label label-rouded label-primary pull-right">2</span>
+                            </span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="{{ route('admin.postcategory.index') }}">Category</a></li>
+                                <li><a href="{{ route('admin.post.index') }}">All Post</a></li>
+                                <li><a href="{{ route('admin.post.create') }}">Add Post</a></li>
+                            </ul>
+                        </li>
 
                     </ul>
                 </nav>

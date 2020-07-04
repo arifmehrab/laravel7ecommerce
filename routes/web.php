@@ -13,14 +13,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function (){
-    return view('welcome');
-});
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//** Frontend Route Here **//
+Route::get('/', 'FrontendController@index');
+
 
 //** Admin Route Here **//
 
@@ -33,24 +32,30 @@ Route::get('admin/dashboard','AdminController@index');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => 'auth:admin'], function () {
     // Admin Profile Update Route..
-Route::get('/profile', 'Auth\ProfileController@index')->name('profile');
-Route::put('/profile/update', 'Auth\ProfileController@profileUpdate')->name('profile.update');
+ Route::get('/profile', 'Auth\ProfileController@index')->name('profile');
+ Route::put('/profile/update', 'Auth\ProfileController@profileUpdate')->name('profile.update');
    // Admin Password Change Route..
-Route::post('/password/update', 'Auth\ProfileController@passwordUpdate')->name('password.update');
+ Route::post('/password/update', 'Auth\ProfileController@passwordUpdate')->name('password.update');
    // Catgegory Route..
-Route::resource('category', 'category\categoryController');
+ Route::resource('category', 'category\categoryController');
    // subCatgegory Route..
-Route::resource('subcategory', 'category\subCategoryController');
-  // Brand Route..
-Route::resource('brand', 'category\brandController');
- // coupns Route..
-Route::resource('coupon', 'coupon\couponController');
- // Product Route..
-Route::resource('product', 'product\productController');
-  // Product Active... 
+ Route::resource('subcategory', 'category\subCategoryController');
+   // Brand Route..
+ Route::resource('brand', 'category\brandController');
+   // coupns Route..
+ Route::resource('coupon', 'coupon\couponController');
+   // Product Route..
+ Route::resource('product', 'product\productController');
+   // Product Active... 
  Route::get('/product/active/{id}', 'product\productController@productActive')->name('product.active');
- // Product Inactive... 
+   // Product Inactive... 
  Route::get('/product/inactive/{id}', 'product\productController@productInactive')->name('product.inactive');
-  // Subcategory Get By Ajax
-Route::get('/product/subcategory/get', 'product\productController@subCategoryGet')->name('product.sub.get');
+   // Subcategory Get By Ajax
+ Route::get('/product/subcategory/get', 'product\productController@subCategoryGet')->name('product.sub.get');
+  // Post Category Route... 
+ Route::resource('postcategory', 'blog\categoryController');
+  // Post Route... 
+ Route::resource('post', 'blog\postController');
+
+
 });
