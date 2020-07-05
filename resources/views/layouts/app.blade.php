@@ -40,7 +40,7 @@
 		
 		<!-- Main Navigation -->
 
-		@include('layouts.partials.category_menu')
+		@yield('category_menu')
 		
         <!-- Menu -->
         @include('layouts.partials.menu')

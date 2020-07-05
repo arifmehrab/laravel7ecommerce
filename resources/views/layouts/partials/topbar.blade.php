@@ -27,8 +27,11 @@
                     </div>
                     <div class="top_bar_user">
                         <div class="user_icon"><img src="images/user.svg" alt=""></div>
-                        <div><a href="#">Register</a></div>
-                        <div><a href="#">Sign in</a></div>
+                        @guest
+                        <div><a href="{{ route('login') }}">Register/Sign in</a></div>
+                        @else
+                        <div><a href="{{ route('home') }}">My Account</a></div>      
+                        @endguest            
                     </div>
                 </div>
             </div>

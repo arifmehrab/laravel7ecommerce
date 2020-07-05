@@ -13,12 +13,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
 //** Frontend Route Here **//
 Route::get('/', 'FrontendController@index');
+
+// Customer Route... 
+Route::get('customer/logout', 'Frontend\CustomerController@customerLogout')->name('customer.loguot');
+Route::get('verify/email', 'Frontend\CustomerController@verifyEmail');
 
 
 //** Admin Route Here **//
