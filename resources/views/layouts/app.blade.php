@@ -101,6 +101,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Devel
 <!-- Sweet-Alert  -->
 <script src="{{ asset('Backend/assets/plugins/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
 <script src="{{ asset('Backend/assets/plugins/sweetalert2/sweet-alert.init.js') }}"></script>
+@stack('js')
 <!--- Toastr Message --->
 <script>
     @if(Session::has('message'))
@@ -121,6 +122,17 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Devel
       }
     @endif
  </script>
+ <!--- Laravel validation Message By Toaster --->
+<script type="text/javascript">
+    @if($errors->any())
+        @foreach($errors->all() as $error)
+        toastr.error('{{ $error }}', 'Error', {
+            closeButton:true,
+            progressBar:true,
+        });
+        @endforeach
+    @endif
+</script>
 </body>
 
 </html>

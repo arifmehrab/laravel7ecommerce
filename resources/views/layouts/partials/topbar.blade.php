@@ -30,7 +30,16 @@
                         @guest
                         <div><a href="{{ route('login') }}">Register/Sign in</a></div>
                         @else
-                        <div><a href="{{ route('home') }}">My Account</a></div>      
+                        <ul class="standard_dropdown top_bar_dropdown">
+                            <li>
+                                <a href="{{ route('customer.dashboard') }}">My Profile<i class="fas fa-chevron-down"></i></a>
+                                <ul>
+                                    <li><a href="#">Wishlist</a></li>
+                                    <li><a href="#">Spanish</a></li>
+                                    <li><a href="#">Japanese</a></li>
+                                </ul>
+                            </li>
+                        </ul>     
                         @endguest            
                     </div>
                 </div>

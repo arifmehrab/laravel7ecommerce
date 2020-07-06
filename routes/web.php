@@ -14,17 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Auth::routes(['verify' => true]);
-
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
-
+// Customer Dashboard... 
+Route::get('/dashboard', 'Frontend\CustomerController@customerDashboard')->name('customer.dashboard')->middleware('verified');
 //** Frontend Route Here **//
 Route::get('/', 'FrontendController@index');
-
 // Customer Route... 
 Route::get('customer/logout', 'Frontend\CustomerController@customerLogout')->name('customer.loguot');
 Route::get('verify/email', 'Frontend\CustomerController@verifyEmail');
-
-
+  // Customer Profile Update.. 
+Route::get('my/profile/edit', 'Frontend\CustomerController@CustomerProfileEdit')->name('customer.profile.edit');
+Route::put('my/profile/update', 'Frontend\CustomerController@customerProfileUpdate')->name('customer.profile.update');
+ // Customer Password Change Route..
+Route::get('my/password/change', 'Frontend\CustomerController@customerPasswordChange')->name('customer.password.change');
+Route::post('my/password/update', 'Frontend\CustomerController@customerPasswordUpdate')->name('customer.password.update');
+ // Customer wishlist.. 
+Route::get('/wishlist/{id}', 'Frontend\wishlistController@wishlist')->name('customer.wishlist');
 //** Admin Route Here **//
 
 Route::get('admin/dashboard','AdminController@index');
