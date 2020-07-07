@@ -28,7 +28,7 @@ Route::put('my/profile/update', 'Frontend\CustomerController@customerProfileUpda
 Route::get('my/password/change', 'Frontend\CustomerController@customerPasswordChange')->name('customer.password.change');
 Route::post('my/password/update', 'Frontend\CustomerController@customerPasswordUpdate')->name('customer.password.update');
  // Customer wishlist.. 
-Route::get('/wishlist/{id}', 'Frontend\wishlistController@wishlist')->name('customer.wishlist');
+Route::get('/wishlist', 'Frontend\wishlistController@wishlist')->name('customer.wishlist');
 //** Admin Route Here **//
 
 Route::get('admin/dashboard','AdminController@index');

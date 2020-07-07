@@ -19,7 +19,7 @@
 <link href="{{ asset('Backend/assets/plugins/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
 <!-- alerts CSS -->
 <link href="{{ asset('Backend/assets/toster-js/css/toastr.css') }}" rel="stylesheet">
-
+@stack('css')
 </head>
 
 <body>

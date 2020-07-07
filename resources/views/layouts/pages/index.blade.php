@@ -197,9 +197,12 @@
 													<button class="product_cart_button">Add to Cart</button>
 												</div>
 											</div>
-											<a href="{{ route('customer.wishlist', $row->id) }}">
-											<div class="product_fav"><i class="fas fa-heart"></i></div>
-										   </a>
+										<button id="wishlist" data-id="{{ $row->id }}">
+											<div class="product_fav">
+												<i class="fas fa-heart">
+												</i>
+											</div>
+										</button>
 											<ul class="product_marks">
 												@if($row->discount_price == NULL)
 												<li class="product_mark product_new" style="background: green;">new</li>
@@ -245,7 +248,11 @@
 													<button class="product_cart_button">Add to Cart</button>
 												</div>
 											</div>
-											<div class="product_fav"><i class="fas fa-heart"></i></div>
+											<button id="wishlist" data-id="{{ $row->id }}">
+											<div class="product_fav">
+												<i class="fas fa-heart"></i>
+											</div>
+											</button>
 											<ul class="product_marks">
 												@if($row->discount_price == NULL)
 												<li class="product_mark product_new" style="background: green;">new</li>
@@ -287,7 +294,11 @@
 													<button class="product_cart_button">Add to Cart</button>
 												</div>
 											</div>
-											<div class="product_fav"><i class="fas fa-heart"></i></div>
+											<button id="wishlist" data-id="{{ $row->id }}">
+											<div class="product_fav">
+												<i class="fas fa-heart"></i>
+											</div>
+											</button>
 											<ul class="product_marks">
 												@if($row->discount_price == NULL)
 												<li class="product_mark product_new" style="background-color: green;">new</li>
@@ -2823,3 +2834,41 @@
 		</div>
 	</div>
 @endsection
+@push('js')
+	<script type="text/javascript">
+	  $(document).ready(function(){
+         $(document).on('click','#wishlist', function(){
+			var product_id = $(this).data('id');
+			$.ajax({
+             url : "{{ route('customer.wishlist') }}",
+             type: "GET",
+			 data: {product_id:product_id},
+			 success:function(data){
+				const Toast = Swal.mixin({
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+				timer: 3000,
+				timerProgressBar: true,
+				onOpen: (toast) => {
+					toast.addEventListener('mouseenter', Swal.stopTimer)
+					toast.addEventListener('mouseleave', Swal.resumeTimer)
+				}
+				})
+				if($.isEmptyObject(data.error)){
+					Toast.fire({
+					icon: 'success',
+					title: data.success
+				})
+				} else{
+                    Toast.fire({
+					icon: 'error',
+					title: data.error
+				  })
+			  }
+			 }// end success
+		 });
+	  });
+	});
+	</script>
+@endpush
