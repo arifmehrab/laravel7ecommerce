@@ -19,7 +19,7 @@
     <br>
 	<div class="social-sign-in outer-top-xs">
 		<a href="#" class="btn btn-primary btn-block"> Sign In with Facebook</a>
-		<a href="#" class="btn btn-danger btn-block"> Sign In with Google</a>
+		<a href="{{ url('/login/github') }}" class="btn btn-dark btn-block"> Sign In with Github</a>
     </div>
     <br>
     <form method="POST" action="{{ route('login') }}">

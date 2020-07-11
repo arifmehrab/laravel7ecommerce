@@ -14,9 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Auth::routes(['verify' => true]);
+
+// Sociallight login route.. 
+Route::get('/login/github', 'Auth\LoginController@redirectToProvider');
+Route::get('/login/github/callback', 'Auth\LoginController@handleProviderCallback');
+
 // Customer Dashboard... 
 Route::get('/dashboard', 'Frontend\CustomerController@customerDashboard')->name('customer.dashboard')->middleware('verified');
-//** Frontend Route Here **//
+
+//==================================== Frontend Route Here ===================================================
+//==========================================================================================================//
+
 Route::get('/', 'FrontendController@index');
 // Customer Route... 
 Route::get('customer/logout', 'Frontend\CustomerController@customerLogout')->name('customer.loguot');
@@ -29,14 +37,23 @@ Route::get('my/password/change', 'Frontend\CustomerController@customerPasswordCh
 Route::post('my/password/update', 'Frontend\CustomerController@customerPasswordUpdate')->name('customer.password.update');
  // Customer wishlist.. 
 Route::get('/wishlist', 'Frontend\wishlistController@wishlist')->name('customer.wishlist');
-//** Admin Route Here **//
+ // Card Route.. 
+Route::get('/add/card', 'Frontend\cardController@addToCard')->name('add.to.card');
+ // Card Check.. 
+Route::get('/check', 'Frontend\cardController@cartCheck');
+ // Product Details Route.. 
+Route::get('product/details/{id}/{product_name}', 'Frontend\productController@productDetails')->name('product.details');
+
+//==================================== Admin Route Here ===================================================
+//==========================================================================================================//
 
 Route::get('admin/dashboard','AdminController@index');
    // Admin Authentication Route...
  Route::get('admin', 'Admin\Auth\LoginController@showLoginForm')->name('admin.login');
  Route::post('admin', 'Admin\Auth\LoginController@login');
  Route::get('admin/logout','AdminController@logout')->name('admin.logout');
-//** Admin Route Group **//
+
+//**=========== Admin Route Group ===============**//
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => 'auth:admin'], function () {
     // Admin Profile Update Route..
@@ -64,6 +81,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
  Route::resource('postcategory', 'blog\categoryController');
   // Post Route... 
  Route::resource('post', 'blog\postController');
-
 
 });
