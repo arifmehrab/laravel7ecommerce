@@ -37,10 +37,18 @@ Route::get('my/password/change', 'Frontend\CustomerController@customerPasswordCh
 Route::post('my/password/update', 'Frontend\CustomerController@customerPasswordUpdate')->name('customer.password.update');
  // Customer wishlist.. 
 Route::get('/wishlist', 'Frontend\wishlistController@wishlist')->name('customer.wishlist');
- // Card Route.. 
+ // Cart Add.. 
 Route::get('/add/card', 'Frontend\cardController@addToCard')->name('add.to.card');
- // Card Check.. 
+ // Cart Check.. 
 Route::get('/check', 'Frontend\cardController@cartCheck');
+ // Cart Add By Product Details.. 
+Route::post('/add/product/card/{id}', 'Frontend\cardController@addProductCard')->name('add.product.card');
+ // Cart Product Lists.. 
+Route::get('/cart/product/lists', 'Frontend\cardController@cartProductList')->name('card.product.list');
+ // Cart Product Remove.. 
+Route::get('/cart/product/remove/{rowId}', 'Frontend\cardController@cartProductRemove')->name('cart.product.remove');
+ // Cart Product Update.. 
+ Route::post('/cart/product/update/{id}', 'Frontend\cardController@cartProductUpdate')->name('cart.product.update');
  // Product Details Route.. 
 Route::get('product/details/{id}/{product_name}', 'Frontend\productController@productDetails')->name('product.details');
 

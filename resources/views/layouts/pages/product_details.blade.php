@@ -85,8 +85,8 @@ border: none;
                     @endphp --}}
                     <div class="product_text"><p>{!! $product->product_details !!}</p></div>
                     <div class="order_info d-flex flex-row">
-                        <form  method="post">
-                            
+                        <form  method="post" action="{{ route('add.product.card', $product->id) }}">
+                            @csrf
                             <div class="row">
                                     <div class="col-lg-4">
                                           <div class="form-group">

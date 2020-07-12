@@ -65,8 +65,8 @@
                                 <div class="cart_count"><span>{{ Cart::count() }}</span></div>
                             </div>
                             <div class="cart_content">
-                                <div class="cart_text"><a href="#">Cart</a></div>
-                                <div class="cart_price">$85</div>
+                                <div class="cart_text"><a href="{{ route('card.product.list') }}">Cart</a></div>
+                                <div class="cart_price">{{ Cart::total() }}</div>
                             </div>
                         </div>
                     </div>
