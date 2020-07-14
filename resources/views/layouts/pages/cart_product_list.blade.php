@@ -25,8 +25,15 @@
 										</div>
 										<div class="cart_item_color cart_info_col">
 											<div class="cart_item_title">Color</div>
-											<div class="cart_item_text"><span style="background-color:#999999;"></span>{{ $row->options->color }}</div>
+											<div class="cart_item_text">{{ $row->options->color }}</div>
 										</div>
+										@if($row->options->size == NULL)
+										@else
+										<div class="cart_item_color cart_info_col">
+											<div class="cart_item_title">Size</div>
+											<div class="cart_item_text">{{ $row->options->size }}</div>
+										</div>
+										@endif
 										<div class="cart_item_quantity cart_info_col">
                                             <div class="cart_item_title mt-3">Quantity</div>
                                             <br>

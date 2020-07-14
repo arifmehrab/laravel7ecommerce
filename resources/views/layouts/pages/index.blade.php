@@ -191,7 +191,10 @@
 													<a href="{{ url('product/details/'.$row->id.'/'.$row->product_name) }}">{{ $row->product_name }}</a>
 												</div></div>
 												<div class="product_extras">
-													<button id="addtocard" data-id="{{ $row->id }}" class="product_cart_button">Add to Cart</button>
+													<button data-id="{{ $row->id }}" type="button" class="product_cart_button" data-toggle="modal" data-target="#productView">
+														Add To Cart
+													  </button>
+													{{-- <button id="addtocard" data-id="{{ $row->id }}" class="product_cart_button">Add to Cart</button> --}}
 												</div>
 											</div>
 										<button id="wishlist" data-id="{{ $row->id }}">
@@ -1657,8 +1660,97 @@
 			</div>
 		</div>
 	</div>
+	<!--- Product Sort Description Model --->
+<div class="modal fade" id="productView" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="staticBackdropLabel">Product Sort Details</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+		  <!-- model row -->
+		  <div class="row text-dark">
+             <div class="col-md-4">
+               <img id="imageone" alt="">
+			 </div><!-- end colum -->
+			 <div class="col-md-4">
+                <ul class="list-group">
+					<li class="list-group-item active"><span id="pname"></span>
+					</li>
+					<li class="list-group-item">product Code:- <span id="pcode"></span></li>
+					<li class="list-group-item">Category:- <span id="cname"></span></li>
+					<li class="list-group-item">SubCategory:- <span id="sname"></span></li>
+					<li class="list-group-item">Brand:- <span id="bname"></span></li>
+					<li class="list-group-item">Stock:- <span class="qty bg-success p-1 text-light">avaiable</span></li>
+				  </ul>				  
+			 </div><!-- end colum -->
+			 <div class="col-md-4">
+				<form method="POST" action="{{ route('product.cart.insert') }}">
+					@csrf
+					<input type="hidden" name="product_id" id="product_id">
+					<div class="form-group">
+					  <label>Product Color</label>
+					  <select name="color" id="color" class="form-control">
+					  </select>
+					</div>
+					<div class="form-group">
+						<label>Product Size</label>
+						<select name="size" id="size" class="form-control">
+						</select>
+					</div>
+					<div class="form-group form-check">
+					   <label>Product Quantity</label>
+					  <input type="number" class="form-control" id="quantity" name="qty" value="1">
+					</div>
+					<button type="submit" class="btn btn-primary">Add To Cart</button>
+				  </form>
+			 </div><!-- end colum -->
+		  </div><!-- end row -->
+		</div><!-- end model body -->
+	  </div>
+	</div>
+  </div>
+  <!--- End Model ---->
 @endsection
 @push('js')
+	<!---- Product Sort Details By Model ---->
+	<script type="text/javascript">
+	  $(document).ready(function(){
+        $(document).on('click', '.product_cart_button', function(){
+			var product_id = $(this).data('id');
+			$.ajax({
+               url: "{{ route('product.view') }}",
+			   type: "GET",
+			   data: {product_id:product_id},
+			   success:function(data){
+				   var public_path =  {!! json_encode(url('/')) !!}+"/Backend/assets/images/product/"+data.product.image_one;
+                 $('#pname').text(data.product.product_name);
+				 $('#imageone').attr('src',public_path);
+				 $('#pcode').text(data.product.product_code);
+				 $('#cname').text(data.product.category_name);
+				 $('#sname').text(data.product.subcategory_name);
+				 $('#bname').text(data.product.brand_name);
+				 $('#product_id').val(data.product.id);
+				 // Color 
+				 var color = '<option value""></option>';
+				 $.each(data.color, function(key,v){
+					 color+= '<option value"'+v+'">'+v+'</option>';
+				 });
+				 // Size
+				 var size = '<option value""></option>';
+				 $.each(data.size, function(key,v){
+                    size+= '<option value="'+v+'">'+v+'</option>';
+				 });
+				 $('#color').html(color);
+				 $('#size').html(size);
+			   }
+			});
+		});
+	  });
+	</script>
 	<!---- Add to card Ajax request ---->
 	<script type="text/javascript">
 	  $(document).ready(function(){

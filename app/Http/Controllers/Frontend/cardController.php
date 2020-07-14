@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class cardController extends Controller
 {
-    // Add To Card..
+    // Add To Card By Ajax..
     public function addToCard(Request $request)
     {
         $product_id = $request->product_id;
@@ -38,12 +38,6 @@ class cardController extends Controller
             // json
             return response()->json(['success' => 'cart Added Successfully']);
         }
-    }
-    // Cart Check
-    public function cartCheck()
-    {
-        $checkCart = Cart::content();
-        dd($checkCart->toArray());
     }
     // Add Product Cart By Route..
     public function addProductCard(Request $request, $id)
@@ -118,5 +112,52 @@ class cardController extends Controller
         'alert-type' => 'success',
        );
       return redirect()->back()->with($notification);
+    }
+    // Cart Product Insert.. 
+    public function productCartInsert(Request $request)
+    {
+      $product_id = $request->product_id;
+      $color = $request->color;
+      $size = $request->size;
+      $qty = $request->qty;
+      $product = product::where('id', $product_id)->where('status', 1)->first();
+      // Card Add
+      if ($product->discount_price == null) {
+          $data                     = array();
+          $data['id']               = $product->id;
+          $data['name']             = $product->product_name;
+          $data['qty']              = $qty;
+          $data['price']            = $product->selling_price;
+          $data['weight']           = 1;
+          $data['options']['image'] = $product->image_one;
+          $data['options']['color'] = $color;
+          $data['options']['size']  = $size;
+          Cart::add($data);
+          // Notification...
+          $notification = array(
+              'message'    => 'Cart added successfuly',
+              'alert-type' => 'success',
+          );
+          // Redirect
+          return redirect()->to('/')->with($notification);
+      } else {
+          $data                     = array();
+          $data['id']               = $product->id;
+          $data['name']             = $product->product_name;
+          $data['qty']              = $qty;
+          $data['price']            = $product->discount_price;
+          $data['weight']           = 1;
+          $data['options']['image'] = $product->image_one;
+          $data['options']['color'] = $color;
+          $data['options']['size']  = $size;
+          Cart::add($data);
+          // Notification...
+          $notification = array(
+              'message'    => 'Cart added successfuly',
+              'alert-type' => 'success',
+          );
+          //Redirect
+          return redirect()->to('/')->with($notification);
+      }
     }
 }
