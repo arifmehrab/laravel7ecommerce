@@ -50,26 +50,8 @@
                                 <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
                             </ul>
                         </li>
-                        <li class="page_menu_item has-children">
-                            <a href="#">Featured Brands<i class="fa fa-angle-down"></i></a>
-                            <ul class="page_menu_selection">
-                                <li><a href="#">Featured Brands<i class="fa fa-angle-down"></i></a></li>
-                                <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                                <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                                <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                            </ul>
-                        </li>
-                        <li class="page_menu_item has-children">
-                            <a href="#">Trending Styles<i class="fa fa-angle-down"></i></a>
-                            <ul class="page_menu_selection">
-                                <li><a href="#">Trending Styles<i class="fa fa-angle-down"></i></a></li>
-                                <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                                <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                                <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                            </ul>
-                        </li>
-                        {{-- <li class="page_menu_item"><a href="blog.html">blog<i class="fa fa-angle-down"></i></a></li>
-                        <li class="page_menu_item"><a href="contact.html">contact<i class="fa fa-angle-down"></i></a></li> --}}
+                        <li class="page_menu_item"><a href="{{ route('blog.post') }}">blog<i class="fa fa-angle-down"></i></a></li>
+                       
                     </ul>
                     
                     <div class="menu_contact">

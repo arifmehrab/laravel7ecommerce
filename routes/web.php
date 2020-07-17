@@ -43,7 +43,16 @@ Route::get('/user/wishlist', 'Frontend\wishlistController@wishlistView')->name('
 Route::get('product/details/{id}/{product_name}', 'Frontend\productController@productDetails')->name('product.details');
  // Product view By Ajax.. 
 Route::get('/product/view', 'Frontend\productController@productView')->name('product.view');
- 
+
+//==================================== Frontend Blog & Language Route Here ======================================
+//==========================================================================================================//
+
+  // Blog Post Show.. 
+Route::get('/blog/post', 'Frontend\blogController@blogPost')->name('blog.post');
+  // Language.. 
+Route::get('/english/language', 'Frontend\blogController@englishLanguage')->name('english.language');
+Route::get('/bangla/language', 'Frontend\blogController@banglaLanguage')->name('bangla.language');
+
 //==================================== Cart Route Here ===================================================
 //==========================================================================================================//
 
@@ -65,6 +74,7 @@ Route::get('/user/checkout', 'Frontend\cardController@userCheckout')->name('user
 Route::post('/coupon', 'Frontend\cardController@userCoupon')->name('user.coupons');
 // coupon Apply ..
 Route::get('/coupon/remove', 'Frontend\cardController@userCouponRemove')->name('user.coupons.remove');
+
 //==================================== Admin Route Here ===================================================
 //==========================================================================================================//
 
