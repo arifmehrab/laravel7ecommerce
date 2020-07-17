@@ -33,4 +33,10 @@ class wishlistController extends Controller
          return response()->json(['error'=> 'Your Need To Login First']);
        }
     }
+    // Customer All Wishlist View... 
+    public function wishlistView(){
+      $user = Auth::id();
+      $wishlistView = wishlist::where('user_id', $user)->get();
+      return view('layouts.pages.wishlist_view', compact('wishlistView'));
+    }   
 }

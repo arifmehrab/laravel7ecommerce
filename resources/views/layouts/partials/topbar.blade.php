@@ -34,9 +34,8 @@
                             <li>
                                 <a href="{{ route('customer.dashboard') }}">My Profile<i class="fas fa-chevron-down"></i></a>
                                 <ul>
-                                    <li><a href="#">Wishlist</a></li>
-                                    <li><a href="#">Spanish</a></li>
-                                    <li><a href="#">Japanese</a></li>
+                                    <li><a href="{{ route('customer.wishlist.view') }}">Wishlist</a></li>
+                                    <li><a href="{{ route('user.checkout') }}">Checkout</a></li>
                                 </ul>
                             </li>
                         </ul>     

@@ -1693,7 +1693,7 @@
 					<input type="hidden" name="product_id" id="product_id">
 					<div class="form-group">
 					  <label>Product Color</label>
-					  <select name="color" id="color" class="form-control">
+					  <select name="color" class="form-control">
 					  </select>
 					</div>
 					<div class="form-group">
@@ -1735,17 +1735,15 @@
 				 $('#bname').text(data.product.brand_name);
 				 $('#product_id').val(data.product.id);
 				 // Color 
-				 var color = '<option value""></option>';
+				 var d = $('select[name="color"]').empty();
 				 $.each(data.color, function(key,v){
-					 color+= '<option value"'+v+'">'+v+'</option>';
+					 $('select[name="color"]').append('<option value"'+v+'">'+v+'</option>');
 				 });
 				 // Size
-				 var size = '<option value""></option>';
+				 var d = $('select[name="size"]').empty();
 				 $.each(data.size, function(key,v){
-                    size+= '<option value="'+v+'">'+v+'</option>';
+					 $('select[name="size"]').append('<option value"'+v+'">'+v+'</option>');
 				 });
-				 $('#color').html(color);
-				 $('#size').html(size);
 			   }
 			});
 		});

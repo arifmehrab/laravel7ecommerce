@@ -26,7 +26,7 @@
                 <p>{{ Auth::user()->email }}</p>
                 <a class="btn btn-primary btn-block" href="{{ route('customer.profile.edit') }}">Update Profile</i></a>
                 <a class="btn btn-info btn-block" href="{{ route('customer.password.change') }}">Password Update</i></a>
-                <a class="btn btn-success btn-block" href="#">Wishlist</i></a>
+                <a class="btn btn-success btn-block" href="{{ route('customer.wishlist.view') }}">Wishlist</i></a>
                 <a class="btn btn-danger btn-block" href="{{ route('customer.loguot') }}">Logout</a> 
               </div>
         </div>

@@ -37,6 +37,8 @@ Route::get('my/password/change', 'Frontend\CustomerController@customerPasswordCh
 Route::post('my/password/update', 'Frontend\CustomerController@customerPasswordUpdate')->name('customer.password.update');
  // Customer wishlist.. 
 Route::get('/wishlist', 'Frontend\wishlistController@wishlist')->name('customer.wishlist');
+ // Customer wishlist View.. 
+Route::get('/user/wishlist', 'Frontend\wishlistController@wishlistView')->name('customer.wishlist.view');
  // Product Details Route.. 
 Route::get('product/details/{id}/{product_name}', 'Frontend\productController@productDetails')->name('product.details');
  // Product view By Ajax.. 
@@ -57,8 +59,12 @@ Route::get('/cart/product/remove/{rowId}', 'Frontend\cardController@cartProductR
 Route::post('/cart/product/update/{id}', 'Frontend\cardController@cartProductUpdate')->name('cart.product.update');
  // Product Insert Cart ..
 Route::post('/product/insert/cart', 'Frontend\cardController@productCartInsert')->name('product.cart.insert');
-
-
+ // Product Checkout ..
+Route::get('/user/checkout', 'Frontend\cardController@userCheckout')->name('user.checkout');
+ // coupon Apply ..
+Route::post('/coupon', 'Frontend\cardController@userCoupon')->name('user.coupons');
+// coupon Apply ..
+Route::get('/coupon/remove', 'Frontend\cardController@userCouponRemove')->name('user.coupons.remove');
 //==================================== Admin Route Here ===================================================
 //==========================================================================================================//
 

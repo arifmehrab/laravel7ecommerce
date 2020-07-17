@@ -12,7 +12,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="cart_container">
-						<div class="cart_title">Shopping Cart</div>
+						<div class="cart_title">Checkoout Cart</div>
 						<div class="cart_items">
 							<ul class="cart_list">
                                 @foreach($cartList as $row)
@@ -65,14 +65,52 @@
 						<!-- Order Total -->
 						<div class="order_total">
 							<div class="order_total_content text-md-right">
+								@if(Session::has('coupon'))
 								<div class="order_total_title">Order Total:</div>
-								<div class="order_total_amount">${{ Cart::Subtotal() }}</div>
+								<div class="order_total_amount">${{ Session::get('coupon')['amount'] }}</div>
+								<br>
+								<div class="order_total_title">Coupon Discount:</div>
+								<div class="order_total_amount">
+									${{ Session::get('coupon')['discount'] }} 
+									<span>
+										<a href="{{ route('user.coupons.remove') }}" class="btn btn-danger btn-sm">x</a>
+									</span>
+								</div>
+								@else
+								<div class="order_total_title">Order Total:</div>
+								<div class="order_total_amount">${{ Cart::total() }}</div>
+								@endif
+								<br>
+								@if(Session::has('coupon'))
+								@else
+								<form action="{{ route('user.coupons') }}" method="POST">
+									@csrf
+									<div class="form-group">
+										<input type="text" name="coupon" placeholder="Apply Coupon" style="width: 50%; padding:10px 20px;">
+										<input type="submit" class="btn btn-info" value="Apply">
+									</div>
+								</form>
+								@endif
+								<br>
+								@php
+									$shipping = App\Models\Admin\setting::first();
+									$charge = $shipping->shipping_charge;
+								@endphp
+								<div class="order_total_title">Shipping Charge:</div>
+								<div class="order_total_amount">${{ $charge }}</div>
+								<br>
+								<div class="order_total_title">Total:</div>
+								@if(Session::has('coupon'))
+								<div class="order_total_amount">${{ Session::get('coupon')['amount'] + $charge }}</div>
+								@else
+								<div class="order_total_amount">${{ Cart::Subtotal() + $charge }}</div>
+								@endif
 							</div>
 						</div>
-
+                        <br><br><br><br><br><br><br><br><br><br><br>
 						<div class="cart_buttons">
-							<button type="button" class="button cart_button_clear">Cancle All</button>
-							<a href="{{ route('user.checkout') }}" type="button" class="button cart_button_checkout">Checkout</a>
+							<a href="{{ route('card.product.list') }}" type="button" class="button cart_button_clear">Back</button>
+							<a href="{{ route('user.checkout') }}" type="button" class="button cart_button_checkout">Final List</a>
 						</div>
 					</div>
 				</div>

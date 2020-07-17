@@ -51,7 +51,7 @@
                         $wishlist = App\Models\Frontend\wishlist::where('user_id', $user)->get();
                         @endphp
                         <div class="wishlist_content">
-                            <div class="wishlist_text"><a href="#">Wishlist</a></div>
+                            <div class="wishlist_text"><a href="{{ route('customer.wishlist.view') }}">Wishlist</a></div>
                             <div class="wishlist_count">{{ $wishlist->count() }}</div>
                         </div>  
                         @endguest
@@ -66,7 +66,11 @@
                             </div>
                             <div class="cart_content">
                                 <div class="cart_text"><a href="{{ route('card.product.list') }}">Cart</a></div>
-                                <div class="cart_price">{{ Cart::total() }}</div>
+                                @if(Session::has('coupon'))
+                                <div class="cart_price">{{ Session::get('coupon')['amount'] }}</div>
+                                @else
+                                <div class="cart_price">{{ Cart::Subtotal() }}</div>
+                                @endif
                             </div>
                         </div>
                     </div>
