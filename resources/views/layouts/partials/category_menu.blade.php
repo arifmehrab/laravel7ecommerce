@@ -18,13 +18,13 @@
                         <ul class="cat_menu">
                             @foreach($categories as $category)
                             <li class="hassubs">
-                                <a href="#">{{ $category->category_name }}<i class="fas fa-chevron-right"></i></a>
+                                <a href="{{ url('products/category/'.$category->id.'/'.$category->category_name) }}">{{ $category->category_name }}<i class="fas fa-chevron-right"></i></a>
                                 @php
                                   $subCategories = App\Models\Admin\subcategory::where('category_id', $category->id)->get();  
                                 @endphp
                                 <ul>
                                     @foreach($subCategories as $subcat)
-                                    <li><a href="#">{{ $subcat->subcategory_name }}<i class="fas fa-chevron-right"></i></a></li>
+                                    <li><a href="{{ url('products/'.$subcat->id.'/'.$subcat->subcategory_name) }}">{{ $subcat->subcategory_name }}<i class="fas fa-chevron-right"></i></a></li>
                                     @endforeach
                                 </ul>
                             </li>

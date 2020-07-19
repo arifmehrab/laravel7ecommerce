@@ -103,14 +103,18 @@
 								@if(Session::has('coupon'))
 								<div class="order_total_amount">${{ Session::get('coupon')['amount'] + $charge }}</div>
 								@else
-								<div class="order_total_amount">${{ Cart::Subtotal() + $charge }}</div>
+								@php
+									$str = Cart::Subtotal();
+									$cartTotal = str_replace( ',', '', $str);
+								@endphp
+								<div class="order_total_amount">${{ $cartTotal + $charge }}</div>
 								@endif
 							</div>
 						</div>
                         <br><br><br><br><br><br><br><br><br><br><br>
 						<div class="cart_buttons">
 							<a href="{{ route('card.product.list') }}" type="button" class="button cart_button_clear">Back</button>
-							<a href="{{ route('user.checkout') }}" type="button" class="button cart_button_checkout">Final List</a>
+							<a href="{{ route('payment.page') }}" type="button" class="button cart_button_checkout">Final List</a>
 						</div>
 					</div>
 				</div>

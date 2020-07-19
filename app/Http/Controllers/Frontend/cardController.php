@@ -105,20 +105,24 @@ class cardController extends Controller
     }
     // Cart Product Update..
     public function cartProductUpdate(Request $request, $id)
-    {
-        $coupon = Session::get('coupon')['name'];
+    {   
         $rowId = $id;
         $qty   = $request->qty;
         Cart::update($rowId, $qty);
-        // Coupon Update.. 
+        // Coupon Update..
+        if(Session::has('coupon')) {
+        $str = Cart::Subtotal();
+        $cartTotal = str_replace( ',', '', $str);
+        $coupon = Session::get('coupon')['name']; 
         $couponCheck = coupon::where('coupon', $coupon)->first();
         if ($couponCheck) {
             session::put('coupon', [
                 'name'     => $couponCheck->coupon,
                 'discount' => $couponCheck->discount,
-                'amount'   => Cart::Subtotal() - $couponCheck->discount,
+                'amount'   => $cartTotal - $couponCheck->discount,
             ]);
         }
+    }
         // Notification...
         $notification = array(
             'message'    => 'Cart Update successfuly',
@@ -192,11 +196,13 @@ class cardController extends Controller
     {
         $coupon      = $request->coupon;
         $couponCheck = coupon::where('coupon', $coupon)->first();
+        $str = Cart::Subtotal();
+        $cartTotal = str_replace( ',', '', $str);
         if ($couponCheck) {
             session::put('coupon', [
                 'name'     => $couponCheck->coupon,
                 'discount' => $couponCheck->discount,
-                'amount'   => Cart::Subtotal() - $couponCheck->discount,
+                'amount'   => $cartTotal - $couponCheck->discount,
             ]);
             // Notification...
             $notification = array(

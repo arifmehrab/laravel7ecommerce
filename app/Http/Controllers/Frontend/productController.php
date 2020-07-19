@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\brand;
 use App\Models\Admin\product;
+use App\Models\Admin\category;
 use DB;
 use Illuminate\Http\Request;
 
@@ -38,5 +40,22 @@ class productController extends Controller
            'color'   => $color,
            'size'    => $size
         ));
+    }
+    // category Wais product... 
+    public function CategoryProducts($id, $catname)
+    {
+        $categoryProducts = product::where('category_id', $id)->paginate(20);
+        $brands = product::where('category_id', $id)->select('brand_id')->groupBy('brand_id')->get();
+        $subcategoryproducts = product::where('category_id', $id)->select('subcategory_id')->groupBy('subcategory_id')->get();
+        return view('layouts.pages.category_product', compact('categoryProducts', 'brands', 'subcategoryproducts', 'catname'));
+    }
+    // Subcategory Wais product... 
+    public function subCategoryProducts($id, $subcatname)
+    {
+        $subcatProducts = product::where('subcategory_id', $id)->paginate(20);
+        $brands = product::where('subcategory_id', $id)->select('brand_id')->groupBy('brand_id')->get();
+        $categories = category::select('id','category_name')->get();
+        return view('layouts.pages.subcategory_product', compact('subcatProducts', 'brands', 'categories', 'subcatname'));
+        
     }
 }

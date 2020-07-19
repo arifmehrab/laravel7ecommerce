@@ -69,7 +69,11 @@
                                 @if(Session::has('coupon'))
                                 <div class="cart_price">{{ Session::get('coupon')['amount'] }}</div>
                                 @else
-                                <div class="cart_price">{{ Cart::Subtotal() }}</div>
+                                @php
+                                    $str = Cart::Subtotal();
+                                    $cartsubtotal = str_replace( ',', '', $str);
+                                @endphp
+                                <div class="cart_price">{{ $cartsubtotal }}</div>
                                 @endif
                             </div>
                         </div>

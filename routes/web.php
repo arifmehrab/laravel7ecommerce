@@ -13,67 +13,84 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes(['verify' => true]);
+ Auth::routes(['verify' => true]);
 
-// Sociallight login route.. 
-Route::get('/login/github', 'Auth\LoginController@redirectToProvider');
-Route::get('/login/github/callback', 'Auth\LoginController@handleProviderCallback');
+ // Sociallight login route.. 
+ Route::get('/login/github', 'Auth\LoginController@redirectToProvider');
+ Route::get('/login/github/callback', 'Auth\LoginController@handleProviderCallback');
 
-// Customer Dashboard... 
-Route::get('/dashboard', 'Frontend\CustomerController@customerDashboard')->name('customer.dashboard')->middleware('verified');
 
-//==================================== Frontend Route Here ===================================================
+//==================================== Frontend Customer Route Here ===============================================
+//=================================================================================================================//
+
+ // Customer Dashboard... 
+ Route::get('/dashboard', 'Frontend\CustomerController@customerDashboard')->name('customer.dashboard')->middleware('verified');
+
+ Route::get('/', 'FrontendController@index');
+ // Customer Route... 
+ Route::get('customer/logout', 'Frontend\CustomerController@customerLogout')->name('customer.loguot');
+ Route::get('verify/email', 'Frontend\CustomerController@verifyEmail');
+  // Customer Profile Update.. 
+ Route::get('my/profile/edit', 'Frontend\CustomerController@CustomerProfileEdit')->name('customer.profile.edit');
+ Route::put('my/profile/update', 'Frontend\CustomerController@customerProfileUpdate')->name('customer.profile.update');
+ // Customer Password Change Route..
+ Route::get('my/password/change', 'Frontend\CustomerController@customerPasswordChange')->name('customer.password.change');
+ Route::post('my/password/update', 'Frontend\CustomerController@customerPasswordUpdate')->name('customer.password.update');
+ // Customer wishlist.. 
+ Route::get('/wishlist', 'Frontend\wishlistController@wishlist')->name('customer.wishlist');
+ // Customer wishlist View.. 
+
+ //==================================== Frontend product Route Here ======================================
 //==========================================================================================================//
 
-Route::get('/', 'FrontendController@index');
-// Customer Route... 
-Route::get('customer/logout', 'Frontend\CustomerController@customerLogout')->name('customer.loguot');
-Route::get('verify/email', 'Frontend\CustomerController@verifyEmail');
-  // Customer Profile Update.. 
-Route::get('my/profile/edit', 'Frontend\CustomerController@CustomerProfileEdit')->name('customer.profile.edit');
-Route::put('my/profile/update', 'Frontend\CustomerController@customerProfileUpdate')->name('customer.profile.update');
- // Customer Password Change Route..
-Route::get('my/password/change', 'Frontend\CustomerController@customerPasswordChange')->name('customer.password.change');
-Route::post('my/password/update', 'Frontend\CustomerController@customerPasswordUpdate')->name('customer.password.update');
- // Customer wishlist.. 
-Route::get('/wishlist', 'Frontend\wishlistController@wishlist')->name('customer.wishlist');
- // Customer wishlist View.. 
-Route::get('/user/wishlist', 'Frontend\wishlistController@wishlistView')->name('customer.wishlist.view');
+ Route::get('/user/wishlist', 'Frontend\wishlistController@wishlistView')->name('customer.wishlist.view');
  // Product Details Route.. 
-Route::get('product/details/{id}/{product_name}', 'Frontend\productController@productDetails')->name('product.details');
+ Route::get('product/details/{id}/{product_name}', 'Frontend\productController@productDetails')->name('product.details');
  // Product view By Ajax.. 
-Route::get('/product/view', 'Frontend\productController@productView')->name('product.view');
+ Route::get('/product/view', 'Frontend\productController@productView')->name('product.view');
+ // Category Products Route.. 
+ Route::get('/products/category/{id}/{catname}', 'Frontend\productController@CategoryProducts')->name('category.products');
+ // Sub Category Products Route.. 
+ Route::get('/products/{id}/{subcatname}', 'Frontend\productController@subCategoryProducts')->name('subcategory.products');
 
 //==================================== Frontend Blog & Language Route Here ======================================
 //==========================================================================================================//
 
   // Blog Post Show.. 
-Route::get('/blog/post', 'Frontend\blogController@blogPost')->name('blog.post');
+ Route::get('/blog/post', 'Frontend\blogController@blogPost')->name('blog.post');
   // Language.. 
-Route::get('/english/language', 'Frontend\blogController@englishLanguage')->name('english.language');
-Route::get('/bangla/language', 'Frontend\blogController@banglaLanguage')->name('bangla.language');
+ Route::get('/english/language', 'Frontend\blogController@englishLanguage')->name('english.language');
+ Route::get('/bangla/language', 'Frontend\blogController@banglaLanguage')->name('bangla.language');
+
+//==================================== Frontend Payment Process Route Here ======================================
+//==========================================================================================================//
+
+ // Payment Page..
+ Route::get('/payment/page', 'Frontend\paymentController@paymentPage')->name('payment.page');
+ // Payment Process..
+ Route::post('/payment/process', 'Frontend\paymentController@paymentProcess')->name('payment.process');
 
 //==================================== Cart Route Here ===================================================
 //==========================================================================================================//
 
  // Cart Add.. 
-Route::get('/add/card', 'Frontend\cardController@addToCard')->name('add.to.card');
+ Route::get('/add/card', 'Frontend\cardController@addToCard')->name('add.to.card');
  // Cart Add By Product Details.. 
-Route::post('/add/product/card/{id}', 'Frontend\cardController@addProductCard')->name('add.product.card');
+ Route::post('/add/product/card/{id}', 'Frontend\cardController@addProductCard')->name('add.product.card');
  // Cart Product Lists.. 
-Route::get('/cart/product/lists', 'Frontend\cardController@cartProductList')->name('card.product.list');
+ Route::get('/cart/product/lists', 'Frontend\cardController@cartProductList')->name('card.product.list');
  // Cart Product Remove.. 
-Route::get('/cart/product/remove/{rowId}', 'Frontend\cardController@cartProductRemove')->name('cart.product.remove');
+ Route::get('/cart/product/remove/{rowId}', 'Frontend\cardController@cartProductRemove')->name('cart.product.remove');
  // Cart Product Update.. 
-Route::post('/cart/product/update/{id}', 'Frontend\cardController@cartProductUpdate')->name('cart.product.update');
+ Route::post('/cart/product/update/{id}', 'Frontend\cardController@cartProductUpdate')->name('cart.product.update');
  // Product Insert Cart ..
-Route::post('/product/insert/cart', 'Frontend\cardController@productCartInsert')->name('product.cart.insert');
+ Route::post('/product/insert/cart', 'Frontend\cardController@productCartInsert')->name('product.cart.insert');
  // Product Checkout ..
-Route::get('/user/checkout', 'Frontend\cardController@userCheckout')->name('user.checkout');
+ Route::get('/user/checkout', 'Frontend\cardController@userCheckout')->name('user.checkout');
  // coupon Apply ..
-Route::post('/coupon', 'Frontend\cardController@userCoupon')->name('user.coupons');
-// coupon Apply ..
-Route::get('/coupon/remove', 'Frontend\cardController@userCouponRemove')->name('user.coupons.remove');
+ Route::post('/coupon', 'Frontend\cardController@userCoupon')->name('user.coupons');
+ // coupon Apply ..
+ Route::get('/coupon/remove', 'Frontend\cardController@userCouponRemove')->name('user.coupons.remove');
 
 //==================================== Admin Route Here ===================================================
 //==========================================================================================================//
