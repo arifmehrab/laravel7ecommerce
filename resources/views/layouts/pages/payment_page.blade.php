@@ -117,19 +117,35 @@
                          <div class="form-group">
                             <label class="info-title" for="exampleInputEmail1">City<span>*</span></label>
                             <input id="city" type="text" class="form-control" name="city">
+                            @error('city')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                           @enderror
                         </div>
                         <div class="form-group">
                             <label class="info-title" for="exampleInputEmail1">post Code<span>*</span></label>
                             <input id="post_code" type="text" class="form-control" name="post_code">
+                            @error('post_code')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                           @enderror
                         </div>
+                        <br>
+                        <h3 style="text-align: center;">Choose Payment Gateway</h3>
                         <br>
                         <div class="logos ml-sm-auto">
 							<ul class="logos_list">
-								<li><input type="radio" value="mastercard" name="payment"><img src="{{ asset('Frontend') }}/images/logos_1.png" alt=""></li>
-								<li><input type="radio" value="molie" name="payment"><img src="{{ asset('Frontend') }}/images/logos_2.png" alt=""></li>
-								<li><input type="radio" value="paypal" name="payment"><img src="{{ asset('Frontend') }}/images/logos_3.png" alt=""></li>
-								<li><input type="radio" value="visa" name="payment"><img src="{{ asset('Frontend') }}/images/logos_4.png" alt=""></li>
-							</ul>
+								<li><input type="radio" value="mastercard" name="payment"><img src="{{ asset('Frontend') }}/images/payment/download.png" alt="" style="width: 80px;"></li>
+								<li><input type="radio" value="paypal" name="payment"><img src="{{ asset('Frontend') }}/images/payment/download.jpg" alt="" style="width: 80px;"></li>
+								<li><input type="radio" value="ideal" name="payment"><img src="{{ asset('Frontend') }}/images/payment/images.jpg" alt="" style="width: 80px;"></li>
+                            </ul>
+                            @error('payment')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                           @enderror
                         </div>
                         <br><br>
                         <button type="submit" class="btn btn-info">

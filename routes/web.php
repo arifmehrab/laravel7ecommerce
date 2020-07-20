@@ -62,13 +62,15 @@ use Illuminate\Support\Facades\Route;
  Route::get('/english/language', 'Frontend\blogController@englishLanguage')->name('english.language');
  Route::get('/bangla/language', 'Frontend\blogController@banglaLanguage')->name('bangla.language');
 
-//==================================== Frontend Payment Process Route Here ======================================
+//==================================== Frontend Payment Route Here ======================================
 //==========================================================================================================//
 
  // Payment Page..
  Route::get('/payment/page', 'Frontend\paymentController@paymentPage')->name('payment.page');
  // Payment Process..
  Route::post('/payment/process', 'Frontend\paymentController@paymentProcess')->name('payment.process');
+ // Strip payment charge.. 
+ Route::post('/stripe/charge', 'Frontend\paymentController@stripeCharge')->name('stripe.charge');
 
 //==================================== Cart Route Here ===================================================
 //==========================================================================================================//
