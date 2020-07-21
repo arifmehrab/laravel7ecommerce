@@ -47,7 +47,7 @@
 						<div class="cart_title text-center">Product Informatin</div>
 						<div class="cart_items">
 							<ul class="cart_list">
-                                @foreach($cartList as $row)
+                @foreach($cartList as $row)
 								<li class="cart_item clearfix">
                                     <div class="cart_item_image"><img height="80" src="{{ asset('Backend/assets/images/product/'.$row->options->image) }}" alt=""></div>
 									<div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
@@ -72,8 +72,8 @@
 											<div class="cart_item_text">${{ $row->price*$row->qty }}</div>
                                         </div>
 									</div>
-                                </li>
-                                @endforeach
+                  </li>
+                @endforeach
 							</ul>
 						</div>
 						
@@ -117,6 +117,22 @@
                           <!-- Used to display form errors. -->
                           <div id="card-errors" role="alert"></div>
                         </div>
+                        <!----- Extra Information ----->
+                        <!-- Order Info -->
+                        <input type="hidden" value="{{ $charge }}" name="shipping">
+                        @php
+                        $strr = Cart::Subtotal();
+                        $subtotal = str_replace( ',', '', $strr);
+                        @endphp
+                        <input type="hidden" value="{{ $subtotal + $charge }}" name="cartTotal">
+                        <!-- Shipping Info -->
+                        <input type="hidden" value="{{ $payment['name'] }}" name="ship_name">
+                        <input type="hidden" value="{{ $payment['email'] }}" name="ship_email">
+                        <input type="hidden" value="{{ $payment['phone_number'] }}" name="ship_phone">
+                        <input type="hidden" value="{{ $payment['address'] }}" name="ship_address">
+                        <input type="hidden" value="{{ $payment['city'] }}" name="ship_city">
+                        <input type="hidden" value="{{ $payment['post_code'] }}" name="ship_post_code">
+                        <!-- Extra Info End -->
                       <br>
                         <button class="btn btn-info">Pay Now</button>
                       </form>
