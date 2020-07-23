@@ -103,7 +103,7 @@ Route::get('admin/dashboard','AdminController@index');
  Route::post('admin', 'Admin\Auth\LoginController@login');
  Route::get('admin/logout','AdminController@logout')->name('admin.logout');
 
-//**=========== Admin Route Group ===============**//
+//**========================================== Admin Route Group ===============================================**//
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => 'auth:admin'], function () {
     // Admin Profile Update Route..
@@ -131,5 +131,19 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
  Route::resource('postcategory', 'blog\categoryController');
   // Post Route... 
  Route::resource('post', 'blog\postController');
-
+ //**============================ Admin Order Route ====================================**//
+ Route::get('/order/view/{id}', 'order\orderController@orderView')->name('order.view');
+  // Pending Order
+ Route::get('/pending/orders', 'order\orderController@pendingOrder')->name('pending.order');
+ Route::get('/order/accept/{id}', 'order\orderController@orderAccept')->name('order.accept');
+ Route::get('/order/payment/accept', 'order\orderController@orderPaymentAccept')->name('order.payment.accept');
+  // Prograss Order
+ Route::get('/order/prograss', 'order\orderController@orderPrograss')->name('order.prograss');
+ Route::get('/order/prograss/status/{id}', 'order\orderController@orderPrograssStatus')->name('order.prograss.status');
+  // Delievered Order
+ Route::get('/order/delivered', 'order\orderController@orderDelivered')->name('order.delivered');
+ Route::get('/order/delivered/status/{id}', 'order\orderController@orderDeliveredStatus')->name('order.delivered.status');
+  // Cancle order
+ Route::get('/order/cancled', 'order\orderController@orderCancled')->name('order.cancled');
+ Route::get('/order/cancle/{id}', 'order\orderController@orderCancle')->name('order.cancle');
 });

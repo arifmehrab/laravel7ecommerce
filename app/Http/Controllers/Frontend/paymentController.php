@@ -85,6 +85,7 @@ class paymentController extends Controller
         // Insert Order Information..
         $order                   = new order();
         $order->user_id          = Auth::id();
+        $order->payment_type     = $request->payment_type;
         $order->payment_id       = $charge->payment_method;
         $order->payment_amount   = $charge->amount;
         $order->blnc_transection = $charge->balance_transaction;

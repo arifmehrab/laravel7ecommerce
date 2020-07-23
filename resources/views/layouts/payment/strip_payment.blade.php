@@ -132,6 +132,7 @@
                         <input type="hidden" value="{{ $payment['address'] }}" name="ship_address">
                         <input type="hidden" value="{{ $payment['city'] }}" name="ship_city">
                         <input type="hidden" value="{{ $payment['post_code'] }}" name="ship_post_code">
+                        <input type="hidden" value="{{ $payment['payment'] }}" name="payment_type">
                         <!-- Extra Info End -->
                       <br>
                         <button class="btn btn-info">Pay Now</button>

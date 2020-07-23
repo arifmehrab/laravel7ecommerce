@@ -49,7 +49,7 @@
                         <!----- Blog Widget Area ---->
                         <li class="nav-small-cap">Blog Widget</li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Blogs
-                            <span class="label label-rouded label-primary pull-right">2</span>
+                            <span class="label label-rouded label-primary pull-right">3</span>
                             </span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="{{ route('admin.postcategory.index') }}">Category</a></li>
@@ -57,6 +57,19 @@
                                 <li><a href="{{ route('admin.post.create') }}">Add Post</a></li>
                             </ul>
                         </li>
+                         <!----- Order Widget Area ---->
+                         <li class="nav-small-cap">Orders Widget</li>
+                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Orders
+                             <span class="label label-rouded label-primary pull-right">5</span>
+                             </span></a>
+                             <ul aria-expanded="false" class="collapse">
+                                 <li><a href="{{ route('admin.pending.order') }}">New Pending Order</a></li>
+                                 <li><a href="{{ route('admin.order.payment.accept') }}">Payment Accept Order</a></li>
+                                 <li><a href="{{ route('admin.order.prograss') }}">Prograss Order</a></li>
+                                 <li><a href="{{ route('admin.order.delivered') }}">delivered Order</a></li>
+                                 <li><a href="{{ route('admin.order.cancled') }}">Cancle Order</a></li>
+                             </ul>
+                         </li>
 
                     </ul>
                 </nav>

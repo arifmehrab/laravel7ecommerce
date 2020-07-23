@@ -28,8 +28,7 @@
     <!-- Dashboard 1 Page CSS -->
     <link href="{{ asset('Backend/assets/css/pages/dashboard4.css') }}" rel="stylesheet">
     <!-- DataTable -->
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('Backend/assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('Backend/assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('Backend/assets/plugins/datatables.net-bs4/css/responsive.dataTables.min.css') }}">
     <!--- Extra css in others page --->
     @stack('css')
