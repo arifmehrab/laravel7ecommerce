@@ -71,6 +71,17 @@
                              </ul>
                          </li>
 
+                          <!----- Setting Widget Area ---->
+                          <li class="nav-small-cap">Setting Widget</li>
+                          <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="fa fa-cog"></i><span class="hide-menu">Settings
+                              <span class="label label-rouded label-primary pull-right">3</span>
+                              </span></a>
+                              <ul aria-expanded="false" class="collapse">
+                                  <li><a href="{{ route('admin.pending.order') }}">Site Info Setting</a></li>
+                                  <li><a href="{{ route('admin.seo') }}">Seo Setting</a></li>
+                              </ul>
+                          </li>
+
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

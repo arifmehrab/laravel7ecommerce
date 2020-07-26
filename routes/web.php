@@ -71,6 +71,8 @@ use Illuminate\Support\Facades\Route;
  Route::post('/payment/process', 'Frontend\paymentController@paymentProcess')->name('payment.process');
  // Strip payment charge.. 
  Route::post('/stripe/charge', 'Frontend\paymentController@stripeCharge')->name('stripe.charge');
+ // Order Tracking
+ Route::post('/order/track', 'Frontend\orderTrackingController@orderTracking')->name('order.tracking');
 
 //==================================== Cart Route Here ===================================================
 //==========================================================================================================//
@@ -146,4 +148,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
   // Cancle order
  Route::get('/order/cancled', 'order\orderController@orderCancled')->name('order.cancled');
  Route::get('/order/cancle/{id}', 'order\orderController@orderCancle')->name('order.cancle');
+ //**============================ Admin settings Route ====================================**//
+ Route::get('/seo', 'setting\settingController@seo')->name('seo');
+ Route::put('/seo/update/{id}', 'setting\settingController@seoUpdate')->name('seo.update');
 });

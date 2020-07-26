@@ -7,6 +7,7 @@ use App\User;
 use Auth;
 use Illuminate\Http\Request;
 use Hash;
+use App\Models\Frontend\order;
 class CustomerController extends Controller
 {
     public function __construct()
@@ -16,7 +17,9 @@ class CustomerController extends Controller
     // Customer Dashboard
     public function customerDashboard()
     {
-        return view('layouts.customer.customer_dashboard');
+        $user = Auth::id();
+        $orders = order::where('user_id', $user)->get();
+        return view('layouts.customer.customer_dashboard', compact('orders'));
     }
     // Customer Logout
     public function customerLogout()

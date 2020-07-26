@@ -18,18 +18,14 @@
                                 <a href="{{ route('english.language') }}">English<i class="fas fa-chevron-down"></i></a>
                                 @else
                                 <a href="{{ route('bangla.language') }}">Bangla<i class="fas fa-chevron-down"></i></a>
-                                @endif
+                                @endif                               
                             </li>
                             <li>
-                                <a href="#">$ US dollar<i class="fas fa-chevron-down"></i></a>
-                                <ul>
-                                    <li><a href="#">EUR Euro</a></li>
-                                    <li><a href="#">GBP British Pound</a></li>
-                                    <li><a href="#">JPY Japanese Yen</a></li>
-                                </ul>
+                                <a data-toggle="modal" data-target="#exampleModal" href="#">Order Track<i class="fas fa-chevron-down"></i></a>  
                             </li>
                         </ul>
                     </div>
+                    
                     <div class="top_bar_user">
                         <div class="user_icon"><img src="images/user.svg" alt=""></div>
                         @guest

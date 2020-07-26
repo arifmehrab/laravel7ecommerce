@@ -26,7 +26,7 @@ class FrontendController extends Controller
         // Popular Categories.. 
         $popularCategories = category::all();
         // Electronict category Product.. 
-        $el_Cat= category::skip(2)->first();
+        $el_Cat= category::skip(2)->first(); 
         $elcategory_id = $el_Cat->id;
         $electronicProducts = product::where('category_id', $elcategory_id)->where('status', 1)->orderBy('id', 'DESC')->get();
         // Man's category Product.. 

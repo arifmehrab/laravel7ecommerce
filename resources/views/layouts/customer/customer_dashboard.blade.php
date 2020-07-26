@@ -12,8 +12,28 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                   
-                    You are logged in!
+                   <table class="text-center table">
+                       <tbody>
+                           <tr>
+                               <th>Payment Type</th>
+                               <th>Payment ID</th>
+                               <th>Amount</th>
+                               <th>order Track Code</th>
+                               <th>Date</th>
+                           </tr>
+                       </tbody>
+                       <tbody>
+                           @foreach($orders as $order)
+                           <tr>
+                               <td>{{ $order->payment_type }}</td>
+                               <td>{{ $order->payment_id }}</td>
+                               <td>${{ $order->total }}</td>
+                               <td>{{ $order->status_code }}</td>
+                               <td>{{ $order->date }}</td>
+                           </tr>
+                           @endforeach
+                       </tbody>
+                   </table>
                 </div>
             </div>
         </div>

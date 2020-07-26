@@ -84,6 +84,35 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Devel
 		</div>
 	</div>
 </div>
+<!-- Order tracking Model --->
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+             <form method="POST" action="{{ route('order.tracking') }}">
+                @csrf
+                    <div class="form-group">
+                        <label class="control-label">Write Your Order Tracking ID:</label>
+                        <input type="text" class="form-control" name="track">
+                        @error('track')
+                         <strong class="text-danger">
+                             {{ $message }}
+                         </strong>
+                        @enderror
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Track</button>
+            </div>
+          </form>
+        </div>
+    </div>
+</div>
+<!-- /.modal -->
 
 <script src="{{ asset('Frontend/js/jquery-3.3.1.min.js') }}"></script>
 <script src="{{ asset('Frontend/styles/bootstrap4/popper.js') }}"></script>

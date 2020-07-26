@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\str;
 use App\Models\Frontend\order;
 use App\Models\Frontend\order_detail;
 use App\Models\Frontend\shipping;
+use Auth;
 use Cart;
 use DB;
-use Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\str;
 use Session;
 
 class paymentController extends Controller
@@ -106,10 +106,11 @@ class paymentController extends Controller
         } else {
             $order->total = $request->cartTotal;
         }
-        $order->status = '0';
-        $order->month  = date('m');
-        $order->date   = date('d-m-Y');
-        $order->year   = date('Y');
+        $order->status      = '0';
+        $order->month       = date('m');
+        $order->status_code = Str::random(7);
+        $order->date        = date('d-m-Y');
+        $order->year        = date('Y');
         // DB Transction Here..
         DB::transaction(function () use ($request, $order) {
             if ($order->save()) {
@@ -126,7 +127,7 @@ class paymentController extends Controller
                 // Insert Orders Details..
                 $cartContent = Cart::content();
                 foreach ($cartContent as $row) {
-                    $orderDetais = new order_detail();
+                    $orderDetais               = new order_detail();
                     $orderDetais->order_id     = $order->id;
                     $orderDetais->product_id   = $row->id;
                     $orderDetais->product_name = $row->name;
@@ -141,7 +142,7 @@ class paymentController extends Controller
         });
         // Forget Existing Data..
         Cart::destroy();
-        if(Session::has('coupon')) {
+        if (Session::has('coupon')) {
             Session::forget('coupon');
         }
         // Notification
