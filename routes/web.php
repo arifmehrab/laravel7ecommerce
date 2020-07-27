@@ -148,6 +148,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
   // Cancle order
  Route::get('/order/cancled', 'order\orderController@orderCancled')->name('order.cancled');
  Route::get('/order/cancle/{id}', 'order\orderController@orderCancle')->name('order.cancle');
+ //**============================ Admin Report Route ====================================**//
+ Route::get('/today/report', 'report\reportController@todayReport')->name('today.report');
+ Route::get('/month/report', 'report\reportController@monthReport')->name('month.report');
+ Route::get('/year/report', 'report\reportController@yearReport')->name('year.report');
+ // search report
+ Route::get('/search/report', 'report\reportController@searchReport')->name('search.report');
+ Route::post('/search/report/date', 'report\reportController@searchReportDate')->name('search.report.date');
+ Route::post('/search/report/month', 'report\reportController@searchReportMonth')->name('search.report.month');
+ Route::post('/search/report/year', 'report\reportController@searchReportYear')->name('search.report.year');
+ Route::post('/search/report/Between', 'report\reportController@searchReportBetween')->name('search.report.between');
  //**============================ Admin settings Route ====================================**//
  Route::get('/seo', 'setting\settingController@seo')->name('seo');
  Route::put('/seo/update/{id}', 'setting\settingController@seoUpdate')->name('seo.update');

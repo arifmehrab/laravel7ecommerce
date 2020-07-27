@@ -72,6 +72,19 @@
                          </li>
 
                           <!----- Setting Widget Area ---->
+                          <li class="nav-small-cap">Order Report</li>
+                          <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Reports
+                              <span class="label label-rouded label-primary pull-right">4</span>
+                              </span></a>
+                              <ul aria-expanded="false" class="collapse">
+                                  <li><a href="{{ route('admin.today.report') }}">Today Order</a></li>
+                                  <li><a href="{{ route('admin.month.report') }}">Last Month</a></li>
+                                  <li><a href="{{ route('admin.year.report') }}">Last Year</a></li>
+                                  <li><a href="{{ route('admin.search.report') }}">Search Report</a></li>
+                              </ul>
+                          </li>
+
+                          <!----- Setting Widget Area ---->
                           <li class="nav-small-cap">Setting Widget</li>
                           <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="fa fa-cog"></i><span class="hide-menu">Settings
                               <span class="label label-rouded label-primary pull-right">3</span>
