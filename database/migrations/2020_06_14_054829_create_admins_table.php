@@ -20,6 +20,18 @@ class CreateAdminsTable extends Migration
             $table->string('phone')->nullable();
             $table->string('password');
             $table->string('profile')->nullable();
+            $table->string('category')->nullable();
+            $table->string('coupon')->nullable();
+            $table->string('product')->nullable();
+            $table->string('blog')->nullable();
+            $table->string('order')->nullable();
+            $table->string('report')->nullable();
+            $table->string('setting')->nullable();
+            $table->string('user_role')->nullable();
+            $table->string('return_order')->nullable();
+            $table->string('contact_message')->nullable();
+            $table->string('product_comment')->nullable();
+            $table->tinyInteger('user_type')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

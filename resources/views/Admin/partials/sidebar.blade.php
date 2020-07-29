@@ -20,6 +20,7 @@
                         </li>
 
                        <li class="nav-small-cap">Ecommerce All Widget</li>
+                       @if(Auth::user()->category == 2)
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Categories
                             <span class="label label-rouded label-primary pull-right">3</span>
                             </span></a>
@@ -29,7 +30,9 @@
                                 <li><a href="{{ route('admin.brand.index') }}">Brand</a></li>
                             </ul>
                         </li>
-
+                       @else
+                       @endif
+                       @if(Auth::user()->coupon == 2)
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Coupons
                             <span class="label label-rouded label-primary pull-right">1</span>
                             </span></a>
@@ -37,7 +40,9 @@
                                 <li><a href="{{ route('admin.coupon.index') }}">Coupon</a></li>
                             </ul>
                         </li>
-
+                       @else
+                       @endif
+                       @if(Auth::user()->product == 2)
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Products
                             <span class="label label-rouded label-primary pull-right">2</span>
                             </span></a>
@@ -46,8 +51,10 @@
                                 <li><a href="{{ route('admin.product.create') }}">Add Product</a></li>
                             </ul>
                         </li>
+                        @else
+                        @endif
                         <!----- Blog Widget Area ---->
-                        <li class="nav-small-cap">Blog Widget</li>
+                        @if(Auth::user()->blog == 2)
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Blogs
                             <span class="label label-rouded label-primary pull-right">3</span>
                             </span></a>
@@ -57,8 +64,10 @@
                                 <li><a href="{{ route('admin.post.create') }}">Add Post</a></li>
                             </ul>
                         </li>
+                        @else
+                        @endif
                          <!----- Order Widget Area ---->
-                         <li class="nav-small-cap">Orders Widget</li>
+                         @if(Auth::user()->order == 2)
                          <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Orders
                              <span class="label label-rouded label-primary pull-right">5</span>
                              </span></a>
@@ -70,9 +79,9 @@
                                  <li><a href="{{ route('admin.order.cancled') }}">Cancle Order</a></li>
                              </ul>
                          </li>
-
-                          <!----- Setting Widget Area ---->
-                          <li class="nav-small-cap">Order Report</li>
+                        @endif
+                          <!----- Order Report Widget Area ---->
+                          @if(Auth::user()->report == 2)
                           <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Reports
                               <span class="label label-rouded label-primary pull-right">4</span>
                               </span></a>
@@ -83,9 +92,10 @@
                                   <li><a href="{{ route('admin.search.report') }}">Search Report</a></li>
                               </ul>
                           </li>
-
+                          @else
+                          @endif
                           <!----- Setting Widget Area ---->
-                          <li class="nav-small-cap">Setting Widget</li>
+                          @if(Auth::user()->setting == 2)
                           <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="fa fa-cog"></i><span class="hide-menu">Settings
                               <span class="label label-rouded label-primary pull-right">3</span>
                               </span></a>
@@ -94,7 +104,55 @@
                                   <li><a href="{{ route('admin.seo') }}">Seo Setting</a></li>
                               </ul>
                           </li>
-
+                         @else
+                         @endif
+                           <!----- User Role Widget Area ---->
+                           @if(Auth::user()->user_role == 2)
+                           <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">User Role
+                               <span class="label label-rouded label-primary pull-right">3</span>
+                               </span></a>
+                               <ul aria-expanded="false" class="collapse">
+                                   <li><a href="{{ route('admin.user.list') }}">All User</a></li>
+                                   <li><a href="{{ route('admin.user.add') }}">Add User</a></li>
+                               </ul>
+                           </li>
+                          @else
+                          @endif
+                            <!----- Return Order Widget Area ---->
+                            @if(Auth::user()->return_order == 2)
+                            <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Return Order
+                                <span class="label label-rouded label-primary pull-right">3</span>
+                                </span></a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="{{ route('admin.pending.order') }}">All User</a></li>
+                                    <li><a href="{{ route('admin.seo') }}">Add User</a></li>
+                                </ul>
+                            </li>
+                            @else
+                            @endif
+                             <!----- Contact Message Widget Area ---->
+                             @if(Auth::user()->contact_message == 2)
+                             <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Contact Message
+                                 <span class="label label-rouded label-primary pull-right">3</span>
+                                 </span></a>
+                                 <ul aria-expanded="false" class="collapse">
+                                     <li><a href="{{ route('admin.pending.order') }}">All User</a></li>
+                                     <li><a href="{{ route('admin.seo') }}">Add User</a></li>
+                                 </ul>
+                             </li>
+                             @else
+                             @endif
+                              <!----- Product Comments Widget Area ---->
+                              @if(Auth::user()->product_comment == 2)
+                              <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Product Comments
+                                  <span class="label label-rouded label-primary pull-right">3</span>
+                                  </span></a>
+                                  <ul aria-expanded="false" class="collapse">
+                                      <li><a href="{{ route('admin.pending.order') }}">All Comments</a></li>
+                                  </ul>
+                              </li>
+                             @else
+                             @endif
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

@@ -161,4 +161,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
  //**============================ Admin settings Route ====================================**//
  Route::get('/seo', 'setting\settingController@seo')->name('seo');
  Route::put('/seo/update/{id}', 'setting\settingController@seoUpdate')->name('seo.update');
+ //**============================ Admin User Role Route ====================================**//
+ Route::get('/user/list', 'Auth\userRoleController@userList')->name('user.list');
+ Route::get('/add/user', 'Auth\userRoleController@addUser')->name('user.add');
+ Route::post('/user/store', 'Auth\userRoleController@userStore')->name('user.store');
+ Route::get('/user/edit/{id}', 'Auth\userRoleController@userEdit')->name('user.edit');
+ Route::put('/user/update/{id}', 'Auth\userRoleController@userUpdate')->name('user.update');
+ Route::delete('/user/destory/{id}', 'Auth\userRoleController@userDestory')->name('user.destory');
 });
