@@ -73,6 +73,9 @@ use Illuminate\Support\Facades\Route;
  Route::post('/stripe/charge', 'Frontend\paymentController@stripeCharge')->name('stripe.charge');
  // Order Tracking
  Route::post('/order/track', 'Frontend\orderTrackingController@orderTracking')->name('order.tracking');
+ // User Return Order Request Route ===============================
+ Route::get('/return/order/list', 'Frontend\returnOrderController@returnOrderList')->name('return.order.list');
+ Route::get('/return/order/request/{id}', 'Frontend\returnOrderController@returnOrderRequest')->name('return.order.request');
 
 //==================================== Cart Route Here ===================================================
 //==========================================================================================================//
@@ -148,6 +151,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
   // Cancle order
  Route::get('/order/cancled', 'order\orderController@orderCancled')->name('order.cancled');
  Route::get('/order/cancle/{id}', 'order\orderController@orderCancle')->name('order.cancle');
+  // Return Order
+ Route::get('/order/return/list', 'order\orderController@adminReturnOrderList')->name('return.order.list');
+ Route::get('/order/return/request', 'order\orderController@adminReturnOrderRequest')->name('return.order.request');
+ Route::get('/order/return/approved/{id}', 'order\orderController@returnOrderApproved')->name('return.order.approved');
+
  //**============================ Admin Report Route ====================================**//
  Route::get('/today/report', 'report\reportController@todayReport')->name('today.report');
  Route::get('/month/report', 'report\reportController@monthReport')->name('month.report');
@@ -159,8 +167,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
  Route::post('/search/report/year', 'report\reportController@searchReportYear')->name('search.report.year');
  Route::post('/search/report/Between', 'report\reportController@searchReportBetween')->name('search.report.between');
  //**============================ Admin settings Route ====================================**//
+ // seo setting
  Route::get('/seo', 'setting\settingController@seo')->name('seo');
  Route::put('/seo/update/{id}', 'setting\settingController@seoUpdate')->name('seo.update');
+ // site info settting
+ Route::get('/site/setting', 'setting\settingController@siteSetting')->name('site.setting');
+ Route::put('/site/setting/update/{id}', 'setting\settingController@siteSettingUpdate')->name('site.setting.update');
  //**============================ Admin User Role Route ====================================**//
  Route::get('/user/list', 'Auth\userRoleController@userList')->name('user.list');
  Route::get('/add/user', 'Auth\userRoleController@addUser')->name('user.add');

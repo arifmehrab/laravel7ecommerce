@@ -97,10 +97,10 @@
                           <!----- Setting Widget Area ---->
                           @if(Auth::user()->setting == 2)
                           <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="fa fa-cog"></i><span class="hide-menu">Settings
-                              <span class="label label-rouded label-primary pull-right">3</span>
+                              <span class="label label-rouded label-primary pull-right">2</span>
                               </span></a>
                               <ul aria-expanded="false" class="collapse">
-                                  <li><a href="{{ route('admin.pending.order') }}">Site Info Setting</a></li>
+                                  <li><a href="{{ route('admin.site.setting') }}">Site Info Setting</a></li>
                                   <li><a href="{{ route('admin.seo') }}">Seo Setting</a></li>
                               </ul>
                           </li>
@@ -109,7 +109,7 @@
                            <!----- User Role Widget Area ---->
                            @if(Auth::user()->user_role == 2)
                            <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">User Role
-                               <span class="label label-rouded label-primary pull-right">3</span>
+                               <span class="label label-rouded label-primary pull-right">2</span>
                                </span></a>
                                <ul aria-expanded="false" class="collapse">
                                    <li><a href="{{ route('admin.user.list') }}">All User</a></li>
@@ -121,11 +121,11 @@
                             <!----- Return Order Widget Area ---->
                             @if(Auth::user()->return_order == 2)
                             <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Return Order
-                                <span class="label label-rouded label-primary pull-right">3</span>
+                                <span class="label label-rouded label-primary pull-right">2</span>
                                 </span></a>
                                 <ul aria-expanded="false" class="collapse">
-                                    <li><a href="{{ route('admin.pending.order') }}">All User</a></li>
-                                    <li><a href="{{ route('admin.seo') }}">Add User</a></li>
+                                    <li><a href="{{ route('admin.return.order.request') }}">Return Request</a></li>
+                                    <li><a href="{{ route('admin.return.order.list') }}">All Return Order</a></li>
                                 </ul>
                             </li>
                             @else

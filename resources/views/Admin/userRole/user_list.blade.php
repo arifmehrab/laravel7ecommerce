@@ -41,7 +41,7 @@
                                 <span class="badge badge-primary">{{ ($row->product_comment == 2)?'product Comments':'' }}</span>     
                             </td>
                             <td>
-                                <a title="Edit" class="btn btn-success" href="{{ route('admin.user.update', $row->id) }}">
+                                <a title="Edit" class="btn btn-success" href="{{ route('admin.user.edit', $row->id) }}">
                                     <i class="fa fa-edit"></i>
                                 </a>
                                   <button title="Delete" type="button" class="btn btn-danger">

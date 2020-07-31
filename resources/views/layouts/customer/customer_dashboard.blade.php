@@ -34,6 +34,8 @@
                            @endforeach
                        </tbody>
                    </table>
+                   <hr>
+                   <a class="btn btn-danger" href="{{ route('return.order.list') }}">Return Order Request</a>
                 </div>
             </div>
         </div>

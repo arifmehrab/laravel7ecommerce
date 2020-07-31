@@ -100,4 +100,31 @@ class orderController extends Controller
         $pendingOrders = order::where('status', 4)->orderBy('id','DESC')->get();
         return view('Admin.order.pending_order', compact('pendingOrders'));
       }
+      // Return Order List.. 
+      public function adminReturnOrderList()
+      {
+        $orderLists = order::where('return_order', 2)->orderBy('id', 'DESC')->get();
+        return view('Admin.order.return_order_list', compact('orderLists'));
+      }
+      // Return Order request.. 
+      public function adminReturnOrderRequest()
+      {
+        $returnOrders = order::where('return_order', 1)->get();
+        return view('Admin.order.return_order', compact('returnOrders'));
+      }
+      public function returnOrderApproved($id)
+      {
+         $orderApproved = order::find($id);
+         $orderApproved->return_order = 2;
+         $orderApproved->save();
+         // Notification
+         $notification = array(
+           'message'    => 'Order Return Successfully Approved!',
+           'alert-type' => 'success',
+         );
+       // Redirect
+       return redirect()->back()->with($notification);
+
+      }
+
 }

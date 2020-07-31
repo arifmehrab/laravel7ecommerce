@@ -16,12 +16,17 @@ class CreateSettingsTable extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->integer('vat')->nullable();
-            $table->integer('shipping_charge')->nullable();
+            $table->integer('shipping_charge')->default(10);
             $table->string('logo')->nullable();
-            $table->string('shop_name')->nullable();
-            $table->string('email')->nullable();
-            $table->string('phone')->nullable();
+            $table->string('shop_name')->default('Echo');
+            $table->string('email')->default('example@gmail.com');
+            $table->string('phone')->default('01871848137');
             $table->string('address')->nullable();
+            $table->string('facebook_url')->nullable();
+            $table->string('twitter_url')->nullable();
+            $table->string('youtube_url')->nullable();
+            $table->string('vimeo_url')->nullable();
+            $table->string('copyright')->nullable();
             $table->timestamps();
         });
     }

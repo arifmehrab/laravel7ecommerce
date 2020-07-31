@@ -58,10 +58,39 @@ class userRoleController extends Controller
         return redirect()->route('admin.user.list')->with($notification);
 
     }
-    // User Update
-    public function userUpdate()
+    // user Edit
+    public function userEdit($id)
     {
-        
+        $userEdit = admin::find($id);
+        return view('Admin.userRole.user_edit', compact('userEdit'));
+    }
+    // User Update
+    public function userUpdate(Request $request, $id)
+    {
+        $userUpdate                  = admin::find($id);
+        $userUpdate->name            = $request->name;
+        $userUpdate->email           = $request->email;
+        $userUpdate->phone           = $request->phone;
+        $userUpdate->category        = $request->category;
+        $userUpdate->coupon          = $request->coupon;
+        $userUpdate->product         = $request->product;
+        $userUpdate->blog            = $request->blog;
+        $userUpdate->order           = $request->order;
+        $userUpdate->report          = $request->report;
+        $userUpdate->setting         = $request->setting;
+        $userUpdate->user_role       = $request->user_role;
+        $userUpdate->return_order    = $request->return_order;
+        $userUpdate->contact_message = $request->contact_message;
+        $userUpdate->product_comment = $request->product_comment;
+        $userUpdate->user_type       = 2;
+        $userUpdate->save();
+        // Notification
+        $notification = array(
+            'message'    => 'sub Admin Updated Successfully',
+            'alert-type' => 'success',
+        );
+        // Redirect
+        return redirect()->route('admin.user.list')->with($notification);
     }
     // User Destory
     public function userDestory($id)
