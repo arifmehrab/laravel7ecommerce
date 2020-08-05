@@ -10,8 +10,8 @@
                                 <div class="d-flex">
                                     <div class="m-r-20 align-self-center"><img src="{{ asset('Backend/assets') }}/images/icon/income.png" alt="Income" /></div>
                                     <div class="align-self-center">
-                                        <h6 class="text-muted m-t-10 m-b-0">Total Income</h6>
-                                        <h2 class="m-t-0">953,000</h2></div>
+                                        <h6 class="text-muted m-t-10 m-b-0">Today's Order</h6>
+                                        <h2 class="m-t-0">${{ $today_sale }}</h2></div>
                                 </div>
                             </div>
                         </div>
@@ -22,8 +22,8 @@
                                 <div class="d-flex">
                                     <div class="m-r-20 align-self-center"><img src="{{ asset('Backend/assets') }}/images/icon/expense.png" alt="Income" /></div>
                                     <div class="align-self-center">
-                                        <h6 class="text-muted m-t-10 m-b-0">Total Expense</h6>
-                                        <h2 class="m-t-0">236,000</h2></div>
+                                        <h6 class="text-muted m-t-10 m-b-0">This Month Order</h6>
+                                        <h2 class="m-t-0">${{ $this_month }}</h2></div>
                                 </div>
                             </div>
                         </div>
@@ -34,8 +34,8 @@
                                 <div class="d-flex">
                                     <div class="m-r-20 align-self-center"><img src="{{ asset('Backend/assets') }}/images/icon/assets.png" alt="Income" /></div>
                                     <div class="align-self-center">
-                                        <h6 class="text-muted m-t-10 m-b-0">Total Assets</h6>
-                                        <h2 class="m-t-0">987,563</h2></div>
+                                        <h6 class="text-muted m-t-10 m-b-0">This Year</h6>
+                                        <h2 class="m-t-0">${{ $this_year }}</h2></div>
                                 </div>
                             </div>
                         </div>
@@ -46,8 +46,60 @@
                                 <div class="d-flex">
                                     <div class="m-r-20 align-self-center"><img src="{{ asset('Backend/assets') }}/images/icon/staff.png" alt="Income" /></div>
                                     <div class="align-self-center">
-                                        <h6 class="text-muted m-t-10 m-b-0">Total Staff</h6>
-                                        <h2 class="m-t-0">987,563</h2></div>
+                                        <h6 class="text-muted m-t-10 m-b-0">Today's Delivered</h6>
+                                        <h2 class="m-t-0">${{ $today_delievered }}</h2></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- ============================================================== -->
+                 <div class="row">
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="m-r-20 align-self-center"><img src="{{ asset('Backend/assets') }}/images/icon/income.png" alt="Income" /></div>
+                                    <div class="align-self-center">
+                                        <h6 class="text-muted m-t-10 m-b-0">Return Order</h6>
+                                        <h2 class="m-t-0">${{ $return_order }}</h2></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="m-r-20 align-self-center"><img src="{{ asset('Backend/assets') }}/images/icon/expense.png" alt="Income" /></div>
+                                    <div class="align-self-center">
+                                        <h6 class="text-muted m-t-10 m-b-0">Total Products</h6>
+                                        <h2 class="m-t-0">${{ count($products) }}</h2></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="m-r-20 align-self-center"><img src="{{ asset('Backend/assets') }}/images/icon/assets.png" alt="Income" /></div>
+                                    <div class="align-self-center">
+                                        <h6 class="text-muted m-t-10 m-b-0">Total Posts</h6>
+                                        <h2 class="m-t-0">${{ count($blogs) }}</h2></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="m-r-20 align-self-center"><img src="{{ asset('Backend/assets') }}/images/icon/staff.png" alt="Income" /></div>
+                                    <div class="align-self-center">
+                                        <h6 class="text-muted m-t-10 m-b-0">Total Sub Admins</h6>
+                                        <h2 class="m-t-0">${{ count($admins) }}</h2></div>
                                 </div>
                             </div>
                         </div>
