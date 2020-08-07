@@ -162,7 +162,9 @@ border: none;
            {!! $product->video_link !!}
           </div>
           <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-           Write Product Comment Here:- 
+            <!--- Facebook Comment Box Embade Here -->
+            <div class="fb-comments" data-href="{{ Request::url() }}" data-numposts="8" data-width=""></div>
+            <!--- End Facebook Cmd Box --->
           </div>
         </div>
       
@@ -324,5 +326,7 @@ border: none;
 </div>
 @endsection
 @push('js')
-<script src="{{ asset('Frontend/js/product_custom.js') }}"></scri
+<script src="{{ asset('Frontend/js/product_custom.js') }}"></script>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v8.0" nonce="RL5X88RI"></script>
 @endpush

@@ -163,6 +163,35 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Devel
         @endforeach
     @endif
 </script>
+<!--- Laravel Ajax Live Search --->
+<script type="text/javascript">
+    $( document ).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+    	});
+    });
+    function productSearch(element){
+      var token =  $("input[name=_token]").val();
+      var datastr = "product_title=" + element.value + "&token=" + token; 
+        if (element.value != '') { 
+            $.ajax({
+                type: "POST",
+                url: "{{ route('product.search') }}",
+                data: datastr,
+                success: function( msg ) {
+                    $("#show_post").show();
+                    $('#show_post').html(msg);
+                    console.log(msg);
+                }
+            });
+        }else {
+            $('#show_post').hide();
+        }
+    }
+ 
+</script>
 </body>
 
 </html>

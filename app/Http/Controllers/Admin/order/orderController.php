@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\order;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\product;
 use Illuminate\Http\Request;
 use App\Models\Frontend\order;
 use App\Models\Frontend\shipping;
@@ -27,6 +28,14 @@ class orderController extends Controller
     // order Accept.. 
     public function orderAccept($id)
     {
+      // Stock Manage
+      $orders = order_detail::where('order_id', $id)->get();
+      foreach($orders as $row) {
+        $product = product::where('id', $row->product_id)->first();
+        $product->product_quantity = $product->product_quantity - $row->qty;
+        $product->save();
+      }
+      // Status Change
        $orderAccept = order::find($id);
        $orderAccept->status = 1;
        $orderAccept->save();

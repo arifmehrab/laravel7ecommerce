@@ -53,15 +53,17 @@ use Illuminate\Support\Facades\Route;
  // Sub Category Products Route.. 
  Route::get('/products/{id}/{subcatname}', 'Frontend\productController@subCategoryProducts')->name('subcategory.products');
 
-//==================================== Frontend Blog & Language Route Here ======================================
+//==================================== Frontend Blog & Language & Search Route Here ======================================
 //==========================================================================================================//
 
-  // Blog Post Show.. 
+ // Blog Post Show.. 
  Route::get('/blog/post', 'Frontend\blogController@blogPost')->name('blog.post');
-  // Language.. 
+ // Language.. 
  Route::get('/english/language', 'Frontend\blogController@englishLanguage')->name('english.language');
  Route::get('/bangla/language', 'Frontend\blogController@banglaLanguage')->name('bangla.language');
-
+ // Search
+ Route::post('/search/product', 'Frontend\searchController@productSearch')->name('product.search');
+ Route::post('/product/search/resuit', 'Frontend\searchController@productSearchResuit')->name('product.search.resuit');
 //==================================== Frontend Payment Route Here ======================================
 //==========================================================================================================//
 
