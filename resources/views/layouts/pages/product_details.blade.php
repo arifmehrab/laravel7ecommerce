@@ -127,14 +127,14 @@ border: none;
                             <div class="product_price"> Price ${{ $product->selling_price }}</div>
                             @else
                             <div class="product_price"> Price ${{ $product->discount_price }}/<strong style="color: red;">${{ $product->selling_price }}</strong></div>
-                            @endif
-                            <div class="button_container">
+                            @endif  
+                            <br><br>
                                 <button type="submit" class="button cart_button">Add to Cart</button>
                                 <div class="product_fav"><i class="fas fa-heart"></i></div>
-                            </div><br>
-                            
+                            </div><br><br>
+                            <!-- ShareThis BEGIN -->
                             <div class="sharethis-inline-share-buttons"></div>
-                            
+                            <!-- ShareThis END -->                   
                         </form>
                     </div>
                 </div>
@@ -329,4 +329,6 @@ border: none;
 <script src="{{ asset('Frontend/js/product_custom.js') }}"></script>
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v8.0" nonce="RL5X88RI"></script>
+<!-- Product social share -->
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5f2d8c43e543350013c372aa&product=sop' async='async'></script>
 @endpush

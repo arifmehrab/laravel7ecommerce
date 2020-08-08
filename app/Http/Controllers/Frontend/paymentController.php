@@ -12,6 +12,8 @@ use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\str;
 use Session;
+use Mail;
+use App\Mail\InvoiceMail;
 
 class paymentController extends Controller
 {
@@ -140,6 +142,9 @@ class paymentController extends Controller
                 }
             }
         });
+        // Invoice User Mail
+        $user = Auth::user()->email;
+        Mail::to($user)->queue( new InvoiceMail($order) );
         // Forget Existing Data..
         Cart::destroy();
         if (Session::has('coupon')) {
