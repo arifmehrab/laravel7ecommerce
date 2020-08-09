@@ -1,13 +1,16 @@
+@php
+    $setting = App\Models\Admin\setting::select('email', 'phone')->first();
+@endphp
 <div class="top_bar">
     <div class="container">
         <div class="row">
             <div class="col d-flex flex-row">
-                <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/phone.png" alt=""></div>+38 068 005 3570</div>
+                <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/phone.png" alt=""></div>+88{{ $setting->phone }}</div>
                 <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/mail.png" alt=""></div><a href="mailto:fastsales@gmail.com">
                     @if(Session::get('language') == 'bangla')
-                    আরিফ
+                    আরিফ.কম 
                     @else
-                    fastsales@gmail.com
+                    {{ $setting->email }}
                     @endif
                     </a></div>
                 <div class="top_bar_content ml-auto">

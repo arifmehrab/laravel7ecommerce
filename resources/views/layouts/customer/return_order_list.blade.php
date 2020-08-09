@@ -63,7 +63,7 @@
                                        @csrf
                                        @method('put')
                                    </form>
-                                   @elseif($rwo->status == 0)
+                                   @elseif($row->status == 0)
                                    <a href="">Cancle</a>
                                    @else
                                    @endif

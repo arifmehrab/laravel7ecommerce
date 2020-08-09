@@ -10,7 +10,7 @@
     <div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/shop_background.jpg"></div>
     <div class="home_overlay"></div>
     <div class="home_content d-flex flex-column align-items-center justify-content-center">
-        <h2 class="home_title">{{ $catname }}</h2>
+        <h2 class="home_title">Shop</h2>
     </div>
 </div>
 
@@ -24,10 +24,22 @@
                 <!-- Shop Sidebar -->
                 <div class="shop_sidebar">
                     <div class="sidebar_section">
+                        <div class="sidebar_title">Categories</div>
+                        <ul class="sidebar_categories">
+                            @foreach($categories as $row)
+                            <li>
+                                <a href="{{ url('products/category/'.$row->id.'/'.$row->category_name) }}">
+                                 {{ $row->category_name }}
+                               </a>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="sidebar_section">
                         <div class="sidebar_title">Sub Categories</div>
                         <ul class="sidebar_categories">
-                            @foreach($subcategoryproducts as $row)
-                            <li><a href="{{ url('products/'.$row->subcategory_id.'/'.$row->subcategory->subcategory_name) }}">{{ $row->subcategory->subcategory_name }}</a></li>
+                            @foreach($subcategories as $row)
+                            <li><a href="{{ url('products/'.$row->id.'/'.$row->subcategory_name) }}">{{ $row->subcategory_name }}</a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -55,7 +67,7 @@
                         <div class="sidebar_subtitle brands_subtitle">Brands</div>
                         <ul class="brands_list">
                             @foreach($brands as $row)
-                            <li class="brand"><a href="#">{{ $row->brand->brand_name }}</a></li>
+                            <li class="brand"><a href="#">{{ $row->brand_name }}</a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -69,7 +81,7 @@
 
                 <div class="shop_content">
                     <div class="shop_bar clearfix">
-                        <div class="shop_product_count"><span>{{ $categoryProducts->count() }}</span> products found</div>
+                        <div class="shop_product_count"><span>{{ $products->count() }}</span> products found</div>
                         <div class="shop_sorting">
                             <span>Sort by:</span>
                             <ul>
@@ -89,7 +101,7 @@
                         <div class="product_grid_border"></div>
 
                         <!-- Product Item -->
-                        @foreach($categoryProducts as $row)
+                        @foreach($products as $row)
                         <div class="product_item discount">
                             <div class="product_border"></div>
                             <div class="product_image d-flex flex-column align-items-center justify-content-center"><img width="100" src="{{ asset("Backend/assets/images/product/".$row->image_one) }}" alt=""></div>
@@ -125,7 +137,7 @@
                     <!-- Shop Page Navigation -->
 
                     <div class="shop_page_nav d-flex flex-row">
-                        {{ $categoryProducts->links() }}
+                        {{ $products->links() }}
                     </div>
 
                 </div>

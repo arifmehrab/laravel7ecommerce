@@ -1,11 +1,13 @@
 <div class="header_main">
     <div class="container">
         <div class="row">
-
+            @php
+                $setting = App\Models\Admin\setting::select('logo', 'shop_name')->first();
+            @endphp
             <!-- Logo -->
             <div class="col-lg-2 col-sm-3 col-3 order-1">
                 <div class="logo_container">
-                    <div class="logo"><a href="{{ url('/') }}">OneTech</a></div>
+                    <div class="logo"><a href="{{ url('/') }}">{{ $setting->shop_name }}</a></div>
                 </div>
             </div>
 

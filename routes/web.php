@@ -52,7 +52,8 @@ use Illuminate\Support\Facades\Route;
  Route::get('/products/category/{id}/{catname}', 'Frontend\productController@CategoryProducts')->name('category.products');
  // Sub Category Products Route.. 
  Route::get('/products/{id}/{subcatname}', 'Frontend\productController@subCategoryProducts')->name('subcategory.products');
-
+ // Products shop Route.. 
+ Route::get('/shop', 'Frontend\productController@productShop')->name('product.shop');
 //==================================== Frontend Blog & Language & Search Route Here ======================================
 //==========================================================================================================//
 
