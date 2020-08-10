@@ -133,22 +133,21 @@
                              <!----- Contact Message Widget Area ---->
                              @if(Auth::user()->contact_message == 2)
                              <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Contact Message
-                                 <span class="label label-rouded label-primary pull-right">3</span>
+                                 <span class="label label-rouded label-primary pull-right">1</span>
                                  </span></a>
                                  <ul aria-expanded="false" class="collapse">
-                                     <li><a href="{{ route('admin.pending.order') }}">All User</a></li>
-                                     <li><a href="{{ route('admin.seo') }}">Add User</a></li>
+                                     <li><a href="{{ route('admin.message.list') }}">All Message</a></li>
                                  </ul>
                              </li>
                              @else
                              @endif
                               <!----- Product Comments Widget Area ---->
                               @if(Auth::user()->product_comment == 2)
-                              <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Product Comments
-                                  <span class="label label-rouded label-primary pull-right">3</span>
+                              <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">subscribers
+                                  <span class="label label-rouded label-primary pull-right">1</span>
                                   </span></a>
                                   <ul aria-expanded="false" class="collapse">
-                                      <li><a href="{{ route('admin.pending.order') }}">All Comments</a></li>
+                                      <li><a href="{{ route('admin.subscribers.list') }}">All subscriber</a></li>
                                   </ul>
                               </li>
                              @else

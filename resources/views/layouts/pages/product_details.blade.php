@@ -182,7 +182,7 @@ border: none;
         <div class="row">
             <div class="col">
                 <div class="viewed_title_container">
-                    <h3 class="viewed_title">Recently Viewed</h3>
+                    <h3 class="viewed_title">Related Products</h3>
                     <div class="viewed_nav_container">
                         <div class="viewed_nav viewed_prev"><i class="fas fa-chevron-left"></i></div>
                         <div class="viewed_nav viewed_next"><i class="fas fa-chevron-right"></i></div>
@@ -191,99 +191,37 @@ border: none;
 
                 <div class="viewed_slider_container">
                     
-                    <!-- Recently Viewed Slider -->
+                    <!-- Related Products Slider -->
 
                     <div class="owl-carousel owl-theme viewed_slider">
                         
-                        <!-- Recently Viewed Item -->
+                        <!-- Related Products Item -->
+                        @foreach($related_products as $row)
                         <div class="owl-item">
                             <div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                <div class="viewed_image"><img src="images/view_1.jpg" alt=""></div>
+                                <div class="viewed_image"><img width="130" height="120" src="{{ asset('Backend/assets/images/product/'.$row->image_one) }}" alt=""></div>
                                 <div class="viewed_content text-center">
-                                    <div class="viewed_price">$225<span>$300</span></div>
-                                    <div class="viewed_name"><a href="#">Beoplay H7</a></div>
+                                    @if($row->discount_price == NULL)
+                                    <div class="viewed_price">${{ $row->selling_price }}</div>
+                                    @else
+                                    <div class="viewed_price">${{ $row->discount_price }} <span>{{ $row->selling_price }}</span></div>
+                                    @endif
+                                    <div class="viewed_name"><a href="#">{{ $row->product_name }}</a></div>
                                 </div>
                                 <ul class="item_marks">
-                                    <li class="item_mark item_discount">-25%</li>
-                                    <li class="item_mark item_new">new</li>
+                                    @if($row->discount_price == NULL)
+										<li class="item_mark item_new" style="background: green;">new</li>
+										@else
+										@php 
+										$amount = $row->selling_price - $row->discount_price;
+										$discount = $amount/$row->selling_price*100;
+										@endphp
+										<li class="item_mark item_discount">-{{ intval($discount) }}%</li>
+										@endif
                                 </ul>
                             </div>
                         </div>
-
-                        <!-- Recently Viewed Item -->
-                        <div class="owl-item">
-                            <div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-                                <div class="viewed_image"><img src="images/view_2.jpg" alt=""></div>
-                                <div class="viewed_content text-center">
-                                    <div class="viewed_price">$379</div>
-                                    <div class="viewed_name"><a href="#">LUNA Smartphone</a></div>
-                                </div>
-                                <ul class="item_marks">
-                                    <li class="item_mark item_discount">-25%</li>
-                                    <li class="item_mark item_new">new</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Recently Viewed Item -->
-                        <div class="owl-item">
-                            <div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-                                <div class="viewed_image"><img src="images/view_3.jpg" alt=""></div>
-                                <div class="viewed_content text-center">
-                                    <div class="viewed_price">$225</div>
-                                    <div class="viewed_name"><a href="#">Samsung J730F...</a></div>
-                                </div>
-                                <ul class="item_marks">
-                                    <li class="item_mark item_discount">-25%</li>
-                                    <li class="item_mark item_new">new</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Recently Viewed Item -->
-                        <div class="owl-item">
-                            <div class="viewed_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-                                <div class="viewed_image"><img src="images/view_4.jpg" alt=""></div>
-                                <div class="viewed_content text-center">
-                                    <div class="viewed_price">$379</div>
-                                    <div class="viewed_name"><a href="#">Huawei MediaPad...</a></div>
-                                </div>
-                                <ul class="item_marks">
-                                    <li class="item_mark item_discount">-25%</li>
-                                    <li class="item_mark item_new">new</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Recently Viewed Item -->
-                        <div class="owl-item">
-                            <div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                <div class="viewed_image"><img src="images/view_5.jpg" alt=""></div>
-                                <div class="viewed_content text-center">
-                                    <div class="viewed_price">$225<span>$300</span></div>
-                                    <div class="viewed_name"><a href="#">Sony PS4 Slim</a></div>
-                                </div>
-                                <ul class="item_marks">
-                                    <li class="item_mark item_discount">-25%</li>
-                                    <li class="item_mark item_new">new</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Recently Viewed Item -->
-                        <div class="owl-item">
-                            <div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-                                <div class="viewed_image"><img src="images/view_6.jpg" alt=""></div>
-                                <div class="viewed_content text-center">
-                                    <div class="viewed_price">$375</div>
-                                    <div class="viewed_name"><a href="#">Speedlink...</a></div>
-                                </div>
-                                <ul class="item_marks">
-                                    <li class="item_mark item_discount">-25%</li>
-                                    <li class="item_mark item_new">new</li>
-                                </ul>
-                            </div>
-                        </div>
+                       @endforeach
                     </div>
 
                 </div>
@@ -303,15 +241,13 @@ border: none;
                     <!-- Brands Slider -->
 
                     <div class="owl-carousel owl-theme brands_slider">
-                        
-                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_1.jpg" alt=""></div></div>
-                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_2.jpg" alt=""></div></div>
-                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_3.jpg" alt=""></div></div>
-                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_4.jpg" alt=""></div></div>
-                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_5.jpg" alt=""></div></div>
-                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_6.jpg" alt=""></div></div>
-                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_7.jpg" alt=""></div></div>
-                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_8.jpg" alt=""></div></div>
+                        @foreach($brands as $row)
+                        <div class="owl-item">
+                            <div class="brands_item d-flex flex-column justify-content-center">
+                                <img src="{{ asset('Backend/assets/images/brand/'.$row->brand_logo) }}" alt="">
+                            </div>
+                        </div>
+                       @endforeach
 
                     </div>
                     

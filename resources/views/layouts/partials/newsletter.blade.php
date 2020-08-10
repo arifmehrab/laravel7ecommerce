@@ -10,11 +10,11 @@
 							<div class="newsletter_text"><p>...and receive %20 coupon for first shopping.</p></div>
 						</div>
 						<div class="newsletter_content clearfix">
-							<form action="#" class="newsletter_form">
-								<input type="email" class="newsletter_input" required="required" placeholder="Enter your email address">
-								<button class="newsletter_button">Subscribe</button>
+							<form method="POST" action="{{ route('subscribers.store') }}" class="newsletter_form">
+								@csrf
+								<input type="email" class="newsletter_input" required="required" placeholder="Enter your email address" name="email">
+								<button type="submit" class="newsletter_button">Subscribe</button>
 							</form>
-							<div class="newsletter_unsubscribe_link"><a href="#">unsubscribe</a></div>
 						</div>
 					</div>
 				</div>

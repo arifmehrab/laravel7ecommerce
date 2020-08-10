@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin\Auth;
 
 use App\admin;
 use App\Http\Controllers\Controller;
+use App\Models\Admin\contact_message;
+use App\Models\Admin\subscriber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -105,4 +107,43 @@ class userRoleController extends Controller
         // Redirect
         return redirect()->route('admin.user.list')->with($notification);
     }
+    // Subscribers Lists 
+    public function subscribersList()
+    {
+        $subscribers = subscriber::all();
+        return view('Admin.subscriber.subscriber_list', compact('subscribers'));
+    }
+    // Subscribers Delete
+    public function subscriberDelete($id)
+    {
+        $subDelete = subscriber::findOrFail($id);
+        $subDelete->delete();
+        // Notification
+        $notification = array(
+            'message'    => 'Subscriber Deleted Successfully',
+            'alert-type' => 'success',
+        );
+        // Redirect
+        return redirect()->route('admin.subscribers.list')->with($notification);
+    }
+    // Message List 
+    public function messageList()
+    {
+        $messages = contact_message::all();
+        return view('Admin.message.message_list', compact('messages'));
+    }
+     // Messasge Delete
+     public function messageDelete($id)
+     {
+         $messageDelete = contact_message::findOrFail($id);
+         $messageDelete->delete();
+         // Notification
+         $notification = array(
+             'message'    => 'Message Deleted Successfully',
+             'alert-type' => 'success',
+         );
+         // Redirect
+         return redirect()->route('admin.message.list')->with($notification);
+     }
+
 }

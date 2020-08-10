@@ -22,7 +22,13 @@ class productController extends Controller
         // Product Size
         $size         = $product->product_size;
         $productSizes = explode(',', $size);
-        return view('layouts.pages.product_details', compact('product', 'productColors', 'productSizes'));
+        // Related product
+        $p = product::where('id', $id)->where('status', 1)->first();
+        $cat_id = $p->category_id;
+        $related_products = product::where('category_id', $cat_id)->where('status', 1)->inRandomOrder()->limit(10)->get();
+        // Brands Logo
+        $brands = brand::select('brand_logo')->get();
+        return view('layouts.pages.product_details', compact('product', 'productColors', 'productSizes', 'related_products', 'brands'));
     }
     // Product View By Ajax..
     public function productView(Request $request)

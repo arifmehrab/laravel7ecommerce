@@ -38,7 +38,11 @@ use Illuminate\Support\Facades\Route;
  Route::post('my/password/update', 'Frontend\CustomerController@customerPasswordUpdate')->name('customer.password.update');
  // Customer wishlist.. 
  Route::get('/wishlist', 'Frontend\wishlistController@wishlist')->name('customer.wishlist');
- // Customer wishlist View.. 
+ // Subscribers Route
+ Route::post('/subscribers/store', 'Frontend\wishlistController@subscriberStore')->name('subscribers.store');
+ // Contact page Route=================
+ Route::get('/contact', 'Frontend\contactController@contact')->name('user.contact');
+ Route::get('/contact/store', 'Frontend\contactController@contactStore')->name('user.contact.store');
 
  //==================================== Frontend product Route Here ======================================
 //==========================================================================================================//
@@ -183,4 +187,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
  Route::get('/user/edit/{id}', 'Auth\userRoleController@userEdit')->name('user.edit');
  Route::put('/user/update/{id}', 'Auth\userRoleController@userUpdate')->name('user.update');
  Route::delete('/user/destory/{id}', 'Auth\userRoleController@userDestory')->name('user.destory');
+ // subscribers Route==========
+ Route::get('/subscribers/list', 'Auth\userRoleController@subscribersList')->name('subscribers.list');
+ Route::delete('/subscribers/delete/{id}', 'Auth\userRoleController@subscriberDelete')->name('subscribers.delete');
+ // Contact Message Route==========
+ Route::get('/message/list', 'Auth\userRoleController@messageList')->name('message.list');
+ Route::delete('/message/delete/{id}', 'Auth\userRoleController@messageDelete')->name('message.delete');
 });

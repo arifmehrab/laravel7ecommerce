@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\subscriber;
 use Illuminate\Http\Request;
 use App\Models\Frontend\wishlist;
 use Auth;
@@ -38,5 +39,23 @@ class wishlistController extends Controller
       $user = Auth::id();
       $wishlistView = wishlist::where('user_id', $user)->get();
       return view('layouts.pages.wishlist_view', compact('wishlistView'));
-    }   
+    } 
+    // Subscriber store
+    public function subscriberStore(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email'
+        ]);
+        $subscriber = new subscriber();
+        $subscriber->email = $request->email;
+        $subscriber->save();
+         // Notification
+         $notification = array(
+            'message'    => 'Subscribe Done',
+            'alert-type' => 'success',
+        );
+        // Redirect
+        return redirect()->back()->with($notification);
+
+    }  
 }
